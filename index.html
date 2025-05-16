@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Главная</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="css/style.min.css?_v=20250516195237">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+	<div class="wrapper">
+		<div class="pointer-events-none">
+			<div class="hidden fixed top-0 left-0 mix-blend-difference z-50 transition-all duration-[450ms] ease-out cursor__ball--big cursor">
+				<svg height="30" width="30">
+					<circle cx="15" cy="15" r="12" stroke-width="0" fill="#f7f8fa"></circle>
+				</svg>
+			</div>
+
+			<div class="hidden fixed top-0 left-0 mix-blend-difference z-50 transition-all duration-100 ease-out cursor__ball--small cursor">
+				<svg height="10" width="10">
+					<circle cx="5" cy="5" r="4" stroke-width="0" fill="#f7f8fa"></circle>
+				</svg>
+			</div>
+		</div>
+
+		<header class="header py-3.5 xl:py-5 relative">
+			<div class="container">
+				<div class="flex items-center justify-between max-[860px]:justify-end gap-2.5 menu">
+					<a href="index.html" class="max-[860px]:mr-auto">
+						<img class="max-w-40 lg:max-w-full xl:w-72" src="img/logo.svg" alt="Т-УНИВЕРСИТЕТ">
+					</a>
+					<div class="h-0 w-0 bg-purple rounded-full absolute top-[30px] right-[30px] z-[4] origin-center transition-all ease-[cubic-bezier(0.86,0,0.07,1)] duration-500 [.menu-open_&]:w-[2000px] [.menu-open_&]:h-[2000px] [.menu-open_&]:-top-[1000px] [.menu-open_&]:-right-[1000px] min-[860px]:hidden">
+					</div>
+					<nav class="menu__body relative z-[5] overflow-auto max-[860px]:absolute max-[860px]:top-0 max-[860px]:-right-full max-[860px]:[.menu-open_&]:right-0 max-[860px]:w-full max-[860px]:h-svh max-[860px]:transition-all max-[860px]:duration-500 max-[860px]:flex max-[860px]:flex-col max-[860px]:justify-between max-[860px]:pb-4">
+						<ul class="flex items-center max-[860px]:flex-col max-[860px]:items-end max-[860px]:pt-16 max-[860px]:pr-4 gap-6 min-[860px]:gap-1.5 md:gap-6 min-[1100px]:gap-12! text-white font-manrope text-3xl min-[860px]:text-xs lg:text-sm xl:text-lg 2xl:text-2xl header-ul">
+							<li><a href="#">Направления</a></li>
+							<li><a href="#">Мероприятия</a></li>
+							<li><a href="#">Вопрос-ответ</a></li>
+							<li><a href="#">Контакты</a></li>
+						</ul>
+					</nav>
+					<div class="flex gap-2.5 items-center font-manrope text-xs lg:text-sm 2xl:text-lg  max-[578px]:flex-col max-[578px]:items-end max-[578px]:mt-6 max-[578px]:pr-4" data-da=".menu__body, 577, last">
+						<a href="tel:88632381769" class="text-white rounded-[100px] border border-gray py-2 px-4 lg:py-2.5 lg:px-6 transition duration-100 max-[578px]:bg-white max-[578px]:border-white max-[578px]:text-purple max-[578px]:text-xl max-[578px]:py-1 max-[578px]:font-bold">
+							8 (863) 238-17-69
+						</a>
+						<a href="#" class="purple-btn max-[578px]:bg-white max-[578px]:border-white max-[578px]:text-purple max-[578px]:text-xl max-[578px]:py-1 max-[578px]:font-bold">Связаться
+							с нами</a>
+					</div>
+					<button type="button" class="menu__icon icon-menu block min-[860px]:hidden relative w-7 h-4 cursor-pointer relative z-[5]
+			before:transition-all before:duration-300 before:right-0 before:top-0 before:absolute before:w-full before:h-0.5 before:bg-white [.menu-open_&]:before:top-[calc(50%-1px)] [.menu-open_&]:before:-rotate-45
+			after:transition-all after:duration-300 after:right-0 after:bottom-0 after:absolute after:w-full after:h-0.5 after:bg-white [.menu-open_&]:after:bottom-[calc(50%-1px)] [.menu-open_&]:after:rotate-45
+			">
+						<span class="transition-all duration-300 right-0 top-[calc(50%-1px)] absolute w-full h-0.5 bg-white [.menu-open_&]:w-0"></span>
+					</button>
+				</div>
+			</div>
+		</header>
+		<main>
+			<section class="mt-5 pb-16 relative hero">
+				<img src="img/star.svg" alt="Звезда" class="-z-10 absolute -top-16 -left-16 xl:-top-40  xl:-left-40 animate-spin xl:w-6xl max-[701px]:hidden">
+				<div class="container">
+					<div class="mb-5 min-[701px]:mb-7 pointer-events-none flex justify-center">
+						<img src="img/hero-text.svg" alt="ВЫБОР ЗА ТОБОЙ" class="hidden min-[701px]:block">
+						<img src="img/hero-text-mobile.svg" alt="ВЫБОР ЗА ТОБОЙ" class="block min-[701px]:hidden">
+					</div>
+					<div class="flex max-[701px]:flex-col max-[701px]:items-center items-start gap-10 hero-animation">
+						<div class="min-[701px]:text-sm lg:text-base xl:text-2xl max-[701px]:text-center shrink-0 grow-0 text-white font-manrope flex flex-col gap-6 max-w-[265px] xl:max-w-[430px] tracking-tight">
+							<p>
+								В Т-университете мы готовим студента
+								не к рабочему месту, а&nbsp;к&nbsp;деятельности в разных условиях и&nbsp;в&nbsp;разных сферах
+							</p>
+							<p>
+								Мы развиваем у него
+								способность принимать
+								решения и продуктивно действовать в любых ситуациях
+							</p>
+						</div>
+						<div class="max-[701px]:overflow-hidden max-[701px]:w-full hero__slider">
+							<div class="hero__swiper min-[701px]:flex min-[701px]:items-start min-[701px]:gap-3.5 hero-images">
+								<div class="hero__slide shrink-0">
+									<picture><source srcset="img/hero/1.webp" type="image/webp"><img src="img/hero/1.png" alt="Студенты Т-Университета"></picture>
+								</div>
+								<div class="hero__slide shrink-0">
+									<picture><source srcset="img/hero/2.webp" type="image/webp"><img src="img/hero/2.png" alt="Студенты Т-Университета"></picture>
+								</div>
+								<div class="hero__slide shrink-0">
+									<picture><source srcset="img/hero/3.webp" type="image/webp"><img src="img/hero/3.png" alt="Студенты Т-Университета"></picture>
+								</div>
+								<div class="hero__slide shrink-0">
+									<picture><source srcset="img/hero/4.webp" type="image/webp"><img src="img/hero/4.jpg" alt="Студенты Т-Университета"></picture>
+								</div>
+							</div>
+							<div class="hero__pagination pagination min-[701px]:hidden"></div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="bg-white text-primary rounded-[44px] mt-3 md:mt-7 lg:mt-14 py-10 relative
+			before:absolute before:w-full before:h-10 before:bottom-0 before:left-0 before:bg-purple before:z-[-1]">
+				<div class="container flex flex-col items-center">
+					<h2 class="title">ЧТО ЭТО ТАКОЕ?</h2>
+					<div class="flex flex-col gap-3.5 text-center max-w-[690px] text-sm md:text-base lg:text-xl font-manrope">
+						<p>
+							Ты устал от устаревших учебных программ, где теория не имеет ничего общего с реальной жизнью? <span class="text-purple">
+								Тогда
+								тебе к нам в
+								Т-Университет
+							</span> – место, где образование выходит за рамки стандартных лекций и скучных конспектов. Здесь
+							ты учишься <span class="text-purple">
+								не
+								для диплома, а для карьеры!
+							</span>
+						</p>
+						<p>
+							Это новая модель образования, которая делает из тебя не просто специалиста, а универсального
+							профессионала. Ты
+							развиваешь <span class="text-purple">креативность, критическое мышление, коммуникационные навыки и
+								учишься работать в команде</span>,
+							получаешь глубокие
+							знания в твоей профессиональной сфере, которые делают тебя сильным специалистом!
+						</p>
+						<p>
+							Но главное – здесь ты не просто сидишь на лекциях. Т-Университет – это <span class="text-purple">
+								практика, реальные проекты и
+								работа с
+								индустриальными партнерами
+							</span> уже во время учебы!
+						</p>
+					</div>
+					<div class="w-full mt-10 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+						<div class="border border-primary rounded-2xl md:rounded-4xl max-md:pt-2 px-[18px] pb-3">
+							<p class="font-queen text-6xl md:text-8xl lg:text-9xl">
+								<span class="number-animation">95</span>%
+							</p>
+							<p class="text-sm md:text-base">
+								уровень трудоустройства выпускников спустя полгода после окончания университета
+							</p>
+						</div>
+						<div class="border border-primary rounded-2xl md:rounded-4xl max-md:pt-2 px-[18px] pb-3">
+							<p class="font-queen text-6xl md:text-8xl lg:text-9xl">
+								<span class="number-animation">1800</span>+
+							</p>
+							<p class="text-sm md:text-base">
+								выпускников основных образовательных программ
+							</p>
+						</div>
+						<div class="border border-primary rounded-2xl md:rounded-4xl max-md:pt-2 px-[18px] pb-3">
+							<p class="font-queen text-6xl md:text-8xl lg:text-9xl">
+								<span class="number-animation">700</span>+
+							</p>
+							<p class="text-sm md:text-base">
+								уроуровень трудоустройства выпускников спустя полгода после окончания университета
+							</p>
+						</div>
+						<div class="border border-primary rounded-2xl md:rounded-4xl max-md:pt-2 px-[18px] pb-3">
+							<p class="font-queen text-6xl md:text-8xl lg:text-9xl">
+								<span class="number-animation">100</span>+
+							</p>
+							<p class="text-sm md:text-base">
+								преподавателей и исследователей
+							</p>
+						</div>
+					</div>
+					<a href="#" class="purple-btn mt-5 self-stretch text-center py-4">Читать подробнее</a>
+				</div>
+			</section>
+			<section class="bg-purple pt-5 md:pt-10 pb-6 md:pb-14">
+				<div class="container flex flex-col">
+					<h2 class="title self-center">Направления</h2>
+					<div data-showmore="items" data-showmore-media="469,max">
+						<div data-showmore-content="8" class="mt-3 grid gap-5 grid-cols-1 min-[470px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pb-5">
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									Машинное обучение и искусственный интеллект
+								</p>
+							</a>
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									Интерактивные медиа и дизайн
+								</p>
+							</a>
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									Перевод, логистика и межкультурная коммуникация
+								</p>
+							</a>
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									Международный бизнес
+								</p>
+							</a>
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									Цифровое городское планирование и управление недвижимостью
+								</p>
+							</a>
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									Разработка игр и прикладных программ
+								</p>
+							</a>
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									Транспортная инженерия
+								</p>
+							</a>
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									Интеллектуальные транспортные системы
+								</p>
+							</a>
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									Цифровое гражданское строительство
+								</p>
+							</a>
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									Налоги и бизнес в цифровой экономике
+								</p>
+							</a>
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									Беспилотные системы и технологии
+								</p>
+							</a>
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									Управление цифровой трансформацией
+								</p>
+							</a>
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									Технологии Индустрии 4.0 и управление инновационными проектами
+								</p>
+							</a>
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									Приборостроение
+								</p>
+							</a>
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									Веб-разработка
+								</p>
+							</a>
+							<a href="#" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
+								<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+								</div>
+								<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
+									IT-специалист для бизнеса
+								</p>
+							</a>
+						</div>
+						<button data-showmore-button type="button" class="block__more text-purple font-bold bg-white rounded-[100px] py-4 w-full flex justify-center">
+							<span>Показать еще</span>
+							<span>Скрыть</span>
+						</button>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+			</div>
+		</footer>
+	</div>
+	<!-- 
+<div id="popup" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<button data-close type="button" class="popup__close">Закрыть</button>
+			<div class="popup__text">
+			</div>
+		</div>
+	</div>
+</div>
+ -->
+
+	<script src="js/app.min.js?_v=20250516195237"></script>
+</body>
+
+</html>
