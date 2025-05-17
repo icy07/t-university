@@ -659,13 +659,13 @@
     --tw-duration: 300ms;
     transition-duration: 300ms;
   }
-  .duration-700 {
-    --tw-duration: 700ms;
-    transition-duration: 700ms;
-  }
   .duration-\[450ms\] {
     --tw-duration: 450ms;
     transition-duration: 450ms;
+  }
+  .duration-\[750ms\] {
+    --tw-duration: 750ms;
+    transition-duration: 750ms;
   }
   .ease-\[cubic-bezier\(0\.86\,0\,0\.07\,1\)\] {
     --tw-ease: cubic-bezier(0.86,0,0.07,1);
@@ -845,6 +845,11 @@
       top: calc(var(--spacing) * 0);
     }
   }
+  .max-\[860px\]\:-right-full {
+    @media (width < 860px) {
+      right: -100%;
+    }
+  }
   .max-\[860px\]\:mr-auto {
     @media (width < 860px) {
       margin-right: auto;
@@ -900,13 +905,6 @@
       padding-bottom: calc(var(--spacing) * 4);
     }
   }
-  .max-\[860px\]\:transition-all {
-    @media (width < 860px) {
-      transition-property: all;
-      transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-      transition-duration: var(--tw-duration, var(--default-transition-duration));
-    }
-  }
   .max-\[860px\]\:delay-\[100ms\] {
     @media (width < 860px) {
       transition-delay: 100ms;
@@ -927,10 +925,9 @@
       transition-delay: 250ms;
     }
   }
-  .max-\[860px\]\:duration-500 {
+  .max-\[860px\]\:delay-\[750ms\] {
     @media (width < 860px) {
-      --tw-duration: 500ms;
-      transition-duration: 500ms;
+      transition-delay: 750ms;
     }
   }
   .max-\[701px\]\:hidden {
@@ -1355,6 +1352,13 @@
       &::after {
         content: var(--tw-content);
         rotate: 45deg;
+      }
+    }
+  }
+  .max-\[860px\]\:\[\.menu-open_\&\]\:right-0 {
+    @media (width < 860px) {
+      .menu-open & {
+        right: calc(var(--spacing) * 0);
       }
     }
   }

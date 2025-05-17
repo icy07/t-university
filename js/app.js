@@ -707,7 +707,7 @@
             this.rootElement.className = this.rootElement.className.replace(/lenis(-\w+)?/g, "").trim();
         }
     };
-    const lenis = new Lenis({
+    new Lenis({
         autoRaf: true
     });
     function isWebp() {
@@ -827,7 +827,6 @@
                 }
                 body.style.paddingRight = "0px";
                 document.documentElement.classList.remove("lock");
-                lenis.start();
             }), delay);
             bodyLockStatus = false;
             setTimeout((function() {
@@ -845,7 +844,6 @@
             }
             body.style.paddingRight = window.innerWidth - document.querySelector(".wrapper").offsetWidth + "px";
             document.documentElement.classList.add("lock");
-            lenis.stop();
             bodyLockStatus = false;
             setTimeout((function() {
                 bodyLockStatus = true;
