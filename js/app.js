@@ -10280,7 +10280,7 @@
             });
             setTimeout((() => {
                 ScrollTrigger_ScrollTrigger.refresh();
-            }), 350);
+            }), 500);
         }));
     }));
     isWebp();
