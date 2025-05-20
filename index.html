@@ -5,7 +5,7 @@
 	<title>Главная</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20250517142039">
+	<link rel="stylesheet" href="css/style.min.css?_v=20250520202914">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -40,7 +40,7 @@
 								<a href="#" data-goto="#courses">Направления</a>
 							</li>
 							<li class="max-[860px]:mobileMenuList max-[860px]:delay-[200ms] max-[860px]:[.menu-open_&]:delay-[50ms]">
-								<a href="#">Мероприятия</a>
+								<a href="#" data-goto="#events">Мероприятия</a>
 							</li>
 							<li class="max-[860px]:mobileMenuList max-[860px]:delay-[150ms] max-[860px]:[.menu-open_&]:delay-[100ms]">
 								<a href="#">Вопрос-ответ</a>
@@ -106,7 +106,7 @@
 					</div>
 				</div>
 			</section>
-			<section class="bg-white text-primary rounded-[44px] mt-3 md:mt-7 lg:mt-14 py-10 relative
+			<section class="bg-white text-primary rounded-[44px] mt-3 md:mt-7 lg:mt-14 md:py-10 relative
 			before:absolute before:w-full before:h-10 before:bottom-0 before:left-0 before:bg-purple before:z-[-1]">
 				<div class="container flex flex-col items-center">
 					<h2 class="title">ЧТО ЭТО ТАКОЕ?</h2>
@@ -175,7 +175,7 @@
 					<a href="#" class="purple-btn mt-5 self-stretch text-center py-4">Читать подробнее</a>
 				</div>
 			</section>
-			<section id="courses" class="bg-purple pt-5 md:pt-10 pb-6 md:pb-14">
+			<section id="courses" class="bg-purple pt-5 md:pt-10 pb-6 md:pb-14 rounded-b-[44px]">
 				<div class="container flex flex-col">
 					<h2 class="title self-center">Направления</h2>
 					<div data-showmore="items" data-showmore-media="469,max">
@@ -300,6 +300,175 @@
 					</div>
 				</div>
 			</section>
+			<section id="events" class="mt-10 min-[400px]:mt-14 pb-10 relative">
+				<img src="img/star.svg" alt="Звезда" class="-z-10 absolute -top-16 -left-16 xl:-top-40  xl:-left-40 animate-spin xl:w-5xl max-[701px]:hidden">
+				<div class="container events">
+					<h2 class="font-queen text-5xl/[85%] min-[400px]:text-6xl/[80%] min-[500px]:text-8xl/[75%] md:text-9xl/[75%] lg:text-[180px]/[75%] xl:text-[250px]/[75%] flex flex-col items-center min-[400px]:items-start">
+						<span>приходи на наши</span>
+						<span class="text-purple min-[400px]:self-end">мероприятия</span>
+					</h2>
+					<div class="events__slider mt-5 md:mt-10 relative">
+						<div class="events__swiper">
+							<div class="events__slide slide-card">
+								<div class="card-top-info">
+									<p>16 фев 11:00</p>
+									<p>Пл. Гагарина 1, корпус №8, аудитория 8-433</p>
+								</div>
+								<p class="card-title">
+									День Т. Образовательный интенсив. Один день из
+									обучения студента Т—университета
+								</p>
+								<p class="card-text">
+									Ты проживешь один день, как студент Т—университета: увидишь, что значит современный подход в
+									обучении, поучаствуешь в
+									проектной деятельности и сможешь понять, почему наш институт подходит именно тебе.
+								</p>
+								<a href="#" class="card-btn">Зарегистрироваться</a>
+							</div>
+							<div class="events__slide slide-card">
+								<div class="card-top-info">
+									<p>14 окт 2024 – 28 фев 2025</p>
+									<p>Пл. Гагарина 1, главный корпус</p>
+								</div>
+								<p class="card-title">
+									Олимпиада «Я – бакалавр» для обучающихся 5-11-х классов
+								</p>
+								<p class="card-text">
+									Приглашаем обучающихся 5-11-х классов принять участие в уникальной олимпиаде «Я – бакалавр»,
+									которая пройдет в Донском
+									государственном техническом университете и университетах Российской Федерации.
+								</p>
+								<a href="#" class="card-btn">Зарегистрироваться</a>
+							</div>
+							<div class="events__slide slide-card">
+								<div class="card-top-info">
+									<p>16 фев 11:00</p>
+									<p>Пл. Гагарина 1, корпус №8, аудитория 8-433</p>
+								</div>
+								<p class="card-title">
+									День Т. Образовательный интенсив. Один день из обучения студента Т—университета
+								</p>
+								<p class="card-text">
+									Ты проживешь один день, как студент Т—университета: увидишь, что значит современный подход в
+									обучении, поучаствуешь в
+									проектной деятельности и сможешь понять, почему наш институт подходит именно тебе.
+								</p>
+								<a href="#" class="card-btn">Зарегистрироваться</a>
+							</div>
+							<div class="events__slide slide-card">
+								<div class="card-top-info">
+									<p>14 окт 2024 – 28 фев 2025</p>
+									<p>Пл. Гагарина 1, главный корпус</p>
+								</div>
+								<p class="card-title">
+									Олимпиада «Я – бакалавр» для обучающихся 5-11-х классов
+								</p>
+								<p class="card-text">
+									Приглашаем обучающихся 5-11-х классов принять участие в уникальной олимпиаде «Я – бакалавр»,
+									которая пройдет в Донском
+									государственном техническом университете и университетах Российской Федерации.
+								</p>
+								<a href="#" class="card-btn">Зарегистрироваться</a>
+							</div>
+						</div>
+						<div class="hidden md:flex gap-1 absolute left-0 -top-16 lg:-top-[94px]">
+							<button class="link-alike hover:bg-green duration-500 w-10 h-10 lg:w-[54px] lg:h-[54px] rounded-full bg-white flex-center before:text-primary before:text-xl lg:before:text-2xl before:rotate-180 events__nav-prev _icon-arrow">
+							</button>
+							<button class="link-alike hover:bg-green duration-500 w-10 h-10 lg:w-[54px] lg:h-[54px] rounded-full bg-white flex-center before:text-primary before:text-xl lg:before:text-2xl events__nav-next _icon-arrow">
+							</button>
+						</div>
+						<div class="events__pagination pagination md:hidden"></div>
+					</div>
+				</div>
+			</section>
+			<section class="mb-10 min-[701px]:mb-28 images-animation">
+				<div class="container flex flex-col items-center">
+					<h2 class="title">у нас не скучно</h2>
+					<div class="img-animation__slider max-[701px]:overflow-hidden max-[701px]:w-full">
+						<div class="img-animation__swiper img-container">
+							<div class="img-animation__slide">
+								<picture><source srcset="img/animation/1.webp" type="image/webp"><img src="img/animation/1.png" alt="Студенты Т-Университета"></picture>
+							</div>
+							<div class="img-animation__slide">
+								<picture><source srcset="img/animation/2.webp" type="image/webp"><img src="img/animation/2.png" alt="Студенты Т-Университета"></picture>
+							</div>
+							<div class="img-animation__slide">
+								<picture><source srcset="img/animation/3.webp" type="image/webp"><img src="img/animation/3.png" alt="Студенты Т-Университета"></picture>
+							</div>
+						</div>
+						<div class="img-animation__pagination pagination min-[701px]:hidden"></div>
+					</div>
+				</div>
+			</section>
+			<section class="bg-purple rounded-4xl py-10 md:py-20">
+				<div class="container">
+					<h2 class="font-queen text-5xl/[95%] min-[400px]:text-6xl/[95%] min-[600px]:text-8xl/[95%] min-[780px]:text-9xl/[95%]! min-[1100px]:text-[180px]/[95%]! 2xl:text-[250px]/[90%]! flex flex-col items-center min-[400px]:items-start">
+						<span class="text-primary">как будет проходить</span>
+						<span class="min-[400px]:self-end">твоё обучение</span>
+					</h2>
+					<div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
+						<div class="trajectory-card">
+							<div class="trajectory-top">
+								<p>1 курс</p>
+								<p>Университетский минимум</p>
+							</div>
+							<p class="trajectory-text">
+								Ты получишь необходимые базовые знания и компетенции, которые будут составлять твой
+								образовательный фундамент. Именно на
+								базе университетского минимума формируется картина твоего мира
+							</p>
+						</div>
+						<div class="trajectory-card">
+							<div class="trajectory-top">
+								<p>2 курс</p>
+								<p>Область наук и технологий</p>
+							</div>
+							<p class="trajectory-text">
+								Здесь ты приобретёшь углубленные знания и навыки в рамках выбранной тобой в конце первого курса
+								области и готовится к
+								обучению в мейджоре. <br>
+								На выбор будет шесть ОНТ: <br>
+								- Естественные и точные науки <br>
+								- Медицинские науки и общественное здравоохранение <br>
+								- Техника и технологии. И так далее
+							</p>
+						</div>
+						<div class="trajectory-card">
+							<div class="trajectory-top">
+								<p>3-4 курс</p>
+								<p>Мейджор</p>
+							</div>
+							<p class="trajectory-text">
+								Часть образовательной программы, где ты получишь профессиональные компетенции и навыки, обучаясь
+								в профильных
+								образовательных модулях, и познакомишься с потенциальными работодателями.
+								Ты сможешь выбрать мейджор в конце второго курса, обучение в нем занимает 3 и 4 годы обучения, а
+								после успешного
+								окончания получишь диплом государственного образца степени бакалавра.
+							</p>
+						</div>
+						<div class="trajectory-card">
+							<div class="trajectory-top">
+								<p>все курсы</p>
+								<p>Элективный блок</p>
+							</div>
+							<p class="trajectory-text">
+								Место для твоего осознанного и свободного выбора, где ты сам решаешь какие из предложенных
+								учебных модулей ты будешь
+								изучать.
+								В рамках элективного блока ты можешь как углублять имеющиеся знания и компетенции, так и
+								приобретать абсолютно новые,
+								выбирая элективные модули в течение всех четырех лет.
+							</p>
+						</div>
+					</div>
+					<a href="#" class="purple-btn mt-5 self-stretch text-center py-4 bg-primary hidden md:block">Читать
+						подробнее об
+						образовательной траектории</a>
+					<a href="#" class="purple-btn mt-5 self-stretch text-center py-4 bg-primary block md:hidden">Читать
+						подробнее</a>
+				</div>
+			</section>
 		</main>
 		<footer class="footer">
 			<div class="footer__container">
@@ -318,7 +487,7 @@
 </div>
  -->
 
-	<script src="js/app.min.js?_v=20250517142039"></script>
+	<script src="js/app.min.js?_v=20250520202914"></script>
 </body>
 
 </html>

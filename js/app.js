@@ -4052,6 +4052,138 @@
         }));
         return params;
     }
+    function Navigation(_ref) {
+        let {swiper, extendParams, on, emit} = _ref;
+        extendParams({
+            navigation: {
+                nextEl: null,
+                prevEl: null,
+                hideOnClick: false,
+                disabledClass: "swiper-button-disabled",
+                hiddenClass: "swiper-button-hidden",
+                lockClass: "swiper-button-lock",
+                navigationDisabledClass: "swiper-navigation-disabled"
+            }
+        });
+        swiper.navigation = {
+            nextEl: null,
+            $nextEl: null,
+            prevEl: null,
+            $prevEl: null
+        };
+        function getEl(el) {
+            let $el;
+            if (el) {
+                $el = dom(el);
+                if (swiper.params.uniqueNavElements && typeof el === "string" && $el.length > 1 && swiper.$el.find(el).length === 1) $el = swiper.$el.find(el);
+            }
+            return $el;
+        }
+        function toggleEl($el, disabled) {
+            const params = swiper.params.navigation;
+            if ($el && $el.length > 0) {
+                $el[disabled ? "addClass" : "removeClass"](params.disabledClass);
+                if ($el[0] && $el[0].tagName === "BUTTON") $el[0].disabled = disabled;
+                if (swiper.params.watchOverflow && swiper.enabled) $el[swiper.isLocked ? "addClass" : "removeClass"](params.lockClass);
+            }
+        }
+        function update() {
+            if (swiper.params.loop) return;
+            const {$nextEl, $prevEl} = swiper.navigation;
+            toggleEl($prevEl, swiper.isBeginning && !swiper.params.rewind);
+            toggleEl($nextEl, swiper.isEnd && !swiper.params.rewind);
+        }
+        function onPrevClick(e) {
+            e.preventDefault();
+            if (swiper.isBeginning && !swiper.params.loop && !swiper.params.rewind) return;
+            swiper.slidePrev();
+            emit("navigationPrev");
+        }
+        function onNextClick(e) {
+            e.preventDefault();
+            if (swiper.isEnd && !swiper.params.loop && !swiper.params.rewind) return;
+            swiper.slideNext();
+            emit("navigationNext");
+        }
+        function init() {
+            const params = swiper.params.navigation;
+            swiper.params.navigation = create_element_if_not_defined_createElementIfNotDefined(swiper, swiper.originalParams.navigation, swiper.params.navigation, {
+                nextEl: "swiper-button-next",
+                prevEl: "swiper-button-prev"
+            });
+            if (!(params.nextEl || params.prevEl)) return;
+            const $nextEl = getEl(params.nextEl);
+            const $prevEl = getEl(params.prevEl);
+            if ($nextEl && $nextEl.length > 0) $nextEl.on("click", onNextClick);
+            if ($prevEl && $prevEl.length > 0) $prevEl.on("click", onPrevClick);
+            Object.assign(swiper.navigation, {
+                $nextEl,
+                nextEl: $nextEl && $nextEl[0],
+                $prevEl,
+                prevEl: $prevEl && $prevEl[0]
+            });
+            if (!swiper.enabled) {
+                if ($nextEl) $nextEl.addClass(params.lockClass);
+                if ($prevEl) $prevEl.addClass(params.lockClass);
+            }
+        }
+        function destroy() {
+            const {$nextEl, $prevEl} = swiper.navigation;
+            if ($nextEl && $nextEl.length) {
+                $nextEl.off("click", onNextClick);
+                $nextEl.removeClass(swiper.params.navigation.disabledClass);
+            }
+            if ($prevEl && $prevEl.length) {
+                $prevEl.off("click", onPrevClick);
+                $prevEl.removeClass(swiper.params.navigation.disabledClass);
+            }
+        }
+        on("init", (() => {
+            if (swiper.params.navigation.enabled === false) disable(); else {
+                init();
+                update();
+            }
+        }));
+        on("toEdge fromEdge lock unlock", (() => {
+            update();
+        }));
+        on("destroy", (() => {
+            destroy();
+        }));
+        on("enable disable", (() => {
+            const {$nextEl, $prevEl} = swiper.navigation;
+            if ($nextEl) $nextEl[swiper.enabled ? "removeClass" : "addClass"](swiper.params.navigation.lockClass);
+            if ($prevEl) $prevEl[swiper.enabled ? "removeClass" : "addClass"](swiper.params.navigation.lockClass);
+        }));
+        on("click", ((_s, e) => {
+            const {$nextEl, $prevEl} = swiper.navigation;
+            const targetEl = e.target;
+            if (swiper.params.navigation.hideOnClick && !dom(targetEl).is($prevEl) && !dom(targetEl).is($nextEl)) {
+                if (swiper.pagination && swiper.params.pagination && swiper.params.pagination.clickable && (swiper.pagination.el === targetEl || swiper.pagination.el.contains(targetEl))) return;
+                let isHidden;
+                if ($nextEl) isHidden = $nextEl.hasClass(swiper.params.navigation.hiddenClass); else if ($prevEl) isHidden = $prevEl.hasClass(swiper.params.navigation.hiddenClass);
+                if (isHidden === true) emit("navigationShow"); else emit("navigationHide");
+                if ($nextEl) $nextEl.toggleClass(swiper.params.navigation.hiddenClass);
+                if ($prevEl) $prevEl.toggleClass(swiper.params.navigation.hiddenClass);
+            }
+        }));
+        const enable = () => {
+            swiper.$el.removeClass(swiper.params.navigation.navigationDisabledClass);
+            init();
+            update();
+        };
+        const disable = () => {
+            swiper.$el.addClass(swiper.params.navigation.navigationDisabledClass);
+            destroy();
+        };
+        Object.assign(swiper.navigation, {
+            enable,
+            disable,
+            update,
+            init,
+            destroy
+        });
+    }
     function classes_to_selector_classesToSelector(classes) {
         if (classes === void 0) classes = "";
         return `.${classes.trim().replace(/([\.:!\/])/g, "\\$1").replace(/ /g, ".")}`;
@@ -4336,6 +4468,7 @@
     bildSliders();
     const swiperMedia = window.matchMedia("(max-width: 700px)");
     let heroSwiper = null;
+    let imgSwiper = null;
     function initSliders() {
         if (document.querySelector(".hero__slider")) heroSwiper = new core(".hero__slider", {
             modules: [ Pagination ],
@@ -4343,7 +4476,7 @@
             observeParents: true,
             slidesPerView: 1,
             spaceBetween: 10,
-            speed: 800,
+            speed: 600,
             loop: true,
             pagination: {
                 el: ".hero__pagination",
@@ -4356,17 +4489,62 @@
             },
             on: {}
         });
+        if (document.querySelector(".img-animation__slider")) imgSwiper = new core(".img-animation__slider", {
+            modules: [ Pagination ],
+            observer: true,
+            observeParents: true,
+            slidesPerView: 1,
+            spaceBetween: 10,
+            speed: 600,
+            loop: true,
+            pagination: {
+                el: ".img-animation__pagination",
+                clickable: true
+            }
+        });
+    }
+    function initSlidersNotDestroyed() {
+        if (document.querySelector(".events__slider")) heroSwiper = new core(".events__slider", {
+            modules: [ Pagination, Navigation ],
+            observer: true,
+            observeParents: true,
+            slidesPerView: 1,
+            spaceBetween: 10,
+            speed: 600,
+            simulateTouch: false,
+            pagination: {
+                el: ".events__pagination",
+                clickable: true
+            },
+            navigation: {
+                prevEl: ".events__nav-prev",
+                nextEl: ".events__nav-next"
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2
+                }
+            },
+            on: {}
+        });
     }
     function destroySwiper() {
         if (heroSwiper) {
             heroSwiper.destroy();
             heroSwiper = null;
         }
+        if (imgSwiper) {
+            imgSwiper.destroy();
+            imgSwiper = null;
+        }
     }
     swiperMedia.addListener((e => {
         if (e.matches) initSliders(); else destroySwiper();
     }));
-    if (swiperMedia.matches) initSliders();
+    window.addEventListener("load", (function(e) {
+        if (swiperMedia.matches) initSliders();
+        initSlidersNotDestroyed();
+    }));
     let addWindowScrollEvent = false;
     function pageNavigation() {
         document.addEventListener("click", pageNavigationAction);
@@ -4513,7 +4691,7 @@
     const bigBall = document.querySelector(".cursor__ball--big");
     const smallBall = document.querySelector(".cursor__ball--small");
     const cursor = document.querySelectorAll(".cursor");
-    const links = document.querySelectorAll("a");
+    const links = document.querySelectorAll("a, .link-alike");
     if (typeof isMobile !== "undefined" && isMobile.any()) cursor.forEach((el => {
         el.style.display = "none";
     })); else {
@@ -10025,39 +10203,85 @@
     };
     ScrollTrigger_getGSAP() && ScrollTrigger_gsap.registerPlugin(ScrollTrigger_ScrollTrigger);
     gsapWithCSS.registerPlugin(ScrollTrigger_ScrollTrigger);
-    let heroAnim = gsapWithCSS.matchMedia();
-    heroAnim.add("(min-width: 701px)", (() => {
-        gsapWithCSS.to(".hero-animation", {
-            scrollTrigger: {
-                trigger: ".wrapper",
-                endTrigger: ".hero",
+    window.addEventListener("load", (function(e) {
+        let heroAnim = gsapWithCSS.matchMedia();
+        heroAnim.add("(min-width: 701px)", (() => {
+            gsapWithCSS.to(".hero-animation", {
+                scrollTrigger: {
+                    trigger: ".wrapper",
+                    endTrigger: ".hero",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true
+                },
+                x: -1e3,
+                ease: "none"
+            });
+        }));
+        const elements = document.querySelectorAll(".number-animation");
+        elements.forEach((element => {
+            const targetNumber = parseInt(element.textContent);
+            gsapWithCSS.set(element, {
+                textContent: 0
+            });
+            gsapWithCSS.to(element, {
+                textContent: targetNumber,
+                duration: 1,
+                ease: "power3.out",
+                snap: {
+                    textContent: 1
+                },
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 95%",
+                    toggleActions: "play none none reset"
+                }
+            });
+        }));
+        const container = document.querySelector(".images-animation");
+        const images = gsapWithCSS.utils.toArray(".img-animation__slide");
+        gsapWithCSS.matchMedia();
+        heroAnim.add("(min-width: 701px)", (() => {
+            images.forEach(((img, index) => {
+                if (index === 0) gsapWithCSS.set(img, {
+                    opacity: 1,
+                    x: 0,
+                    y: 0
+                }); else gsapWithCSS.set(img, {
+                    opacity: 0,
+                    y: 100
+                });
+            }));
+            const tl = gsapWithCSS.timeline();
+            for (let i = 0; i < images.length - 1; i++) tl.to(images[i], {
+                opacity: 0,
+                x: "-100%",
+                rotate: -30,
+                scale: .7,
+                duration: 1
+            }, "transition" + i).fromTo(images[i + 1], {
+                opacity: 0,
+                y: 300,
+                scale: .7
+            }, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 1
+            }, "transition" + i);
+            ScrollTrigger_ScrollTrigger.create({
+                trigger: container,
+                pin: true,
+                anticipatePin: true,
                 start: "top top",
-                end: "bottom top",
-                scrub: true
-            },
-            x: -1e3,
-            ease: "none"
-        });
-    }));
-    const animation_elements = document.querySelectorAll(".number-animation");
-    animation_elements.forEach((element => {
-        const targetNumber = parseInt(element.textContent);
-        gsapWithCSS.set(element, {
-            textContent: 0
-        });
-        gsapWithCSS.to(element, {
-            textContent: targetNumber,
-            duration: 1,
-            ease: "power3.out",
-            snap: {
-                textContent: 1
-            },
-            scrollTrigger: {
-                trigger: element,
-                start: "top 95%",
-                toggleActions: "play none none reset"
-            }
-        });
+                end: "+=" + (images.length - 1) * 100 + "%",
+                scrub: true,
+                animation: tl
+            });
+            setTimeout((() => {
+                ScrollTrigger_ScrollTrigger.refresh();
+            }), 350);
+        }));
     }));
     isWebp();
     menuInit();
