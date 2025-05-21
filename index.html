@@ -5,7 +5,7 @@
 	<title>Главная</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20250520203445">
+	<link rel="stylesheet" href="css/style.min.css?_v=20250521165656">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -43,10 +43,10 @@
 								<a href="#" data-goto="#events">Мероприятия</a>
 							</li>
 							<li class="max-[860px]:mobileMenuList max-[860px]:delay-[150ms] max-[860px]:[.menu-open_&]:delay-[100ms]">
-								<a href="#">Вопрос-ответ</a>
+								<a href="#" data-goto="#questions">Вопрос-ответ</a>
 							</li>
 							<li class="max-[860px]:mobileMenuList max-[860px]:delay-[100ms] max-[860px]:[.menu-open_&]:delay-[150ms]">
-								<a href="#">Контакты</a>
+								<a href="#" data-goto="#footer">Контакты</a>
 							</li>
 						</ul>
 					</nav>
@@ -469,9 +469,153 @@
 						подробнее</a>
 				</div>
 			</section>
+			<section class="relative pb-8 pt-10 md:pt-20" id="questions">
+				<img src="img/star.svg" alt="Звезда" class="-z-10 absolute -top-16 -left-16 xl:-top-10 xl:-left-10 xl:w-3xl animate-spin max-[701px]:hidden">
+				<div class="container flex flex-col items-center">
+					<h2 class="text-center font-queen text-5xl min-[400px]:text-6xl min-[600px]:text-8xl min-[780px]:text-9xl! min-[1100px]:text-[180px]! 2xl:text-[250px]!">
+						вопрос-ответ
+					</h2>
+					<div data-spollers data-one-spoller class="spollers max-w-[630px] xl:max-w-[840px] w-full mt-6 md:mt-10">
+						<div class="spollers__item">
+							<button type="button" data-spoller class="spollers__title link-alike">
+								Как мне разобраться, что выбрать?
+								<div class="spollers__cross"></div>
+							</button>
+							<div class="spollers__body">
+								<p>
+									В этом тебе поможет Тьютор! Ты сможешь обратиться к нему или к ней с любыми вопросами и за
+									консультацией. Именно Тьютор
+									объяснит тебе, как освоиться в новом образовательном пространстве, как ориентироваться в
+									новых
+									понятиях и правилах,
+									научиться принимать решения и максимально эффективно построить свою образовательную
+									траекторию.
+								</p>
+							</div>
+						</div>
+						<div class="spollers__item">
+							<button type="button" data-spoller class="spollers__title link-alike">
+								Зачем мне самому формировать свою образовательную траекторию?
+								<div class="spollers__cross"></div>
+							</button>
+							<div class="spollers__body">
+								<p>
+									Уникальная ИОТ (Индивидуальная образовательная траектория) позволит получить максимум из
+									того, что может дать
+									университет в твоей профессиональной области. Тебе не придется добирать знания и навыки
+									дополнительными платными
+									курсами. Также теперь ты сможешь, прямо в университете, получить информацию о других
+									областях, которые тебя интересуют,
+									но не связаны с направлением подготовки. Например, если ты поступил на инженерную экологию,
+									ты сможешь не только
+									углубить знания, изучив мировые тренды в области энергосбережения, но и пройти модуль
+									графического дизайна, если он
+									интересен тебе в плане общего развития.
+								</p>
+							</div>
+						</div>
+						<div class="spollers__item">
+							<button type="button" data-spoller class="spollers__title link-alike">
+								Как выпускник я буду отличаться от тех, кто учился по традиционной программе?
+								<div class="spollers__cross"></div>
+							</button>
+							<div class="spollers__body">
+								<p>
+									Формально — ничем. У тебя будет диплом государственного образца, который ты получишь по итогу
+									прохождения программы из курсов, соответствующих государственным стандартам. Фактически —
+									всем! Образовательное пространство Т-университета сформировано так, что ты получишь, помимо
+									профессиональных компетенций и навыков, ряд умений и способностей, которые необходимы в
+									современном мире.
+								</p>
+							</div>
+						</div>
+						<div class="spollers__item">
+							<button type="button" data-spoller class="spollers__title link-alike">
+								У меня будет группа?
+								<div class="spollers__cross"></div>
+							</button>
+							<div class="spollers__body">
+								<p>
+									В новом образовательном пространстве на 1 и 2 курсе ты будешь учиться вместе со студентами
+									других направлений
+									подготовки, у вас будут смешанные команды. На элективных курсах рядом с тобой также могут
+									оказаться студенты других
+									направлений, выбравшие этот курс для углубления знаний или расширения кругозора. Так за два
+									года ты приобретешь друзей и
+									знакомых их самых разных сфер!
+								</p>
+								<p>
+									На 3 и 4 курсе, когда выберешь мейджор, ты уже будешь учиться плечом к плечу с теми, кто
+									выбрал то же направление
+									подготовки. Это твоя профессиональная команда, те, с кем тебе не только общаться, но и,
+									возможно, работать.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 		</main>
-		<footer class="footer">
-			<div class="footer__container">
+		<footer class="footer font-manrope mt-10 md:mt-20" id="footer">
+			<div class="container">
+				<a href="index.html">
+					<img src="img/logo.svg" alt="logo">
+				</a>
+				<div class="mt-5 grid gap-x-2.5 gap-y-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+					<ul class="flex flex-col max-sm:flex-wrap max-sm:max-h-[100px] items-start gap-2 sm:gap-2.5">
+						<li><a href="#">О Т-университете</a></li>
+						<li><a href="#">Образование</a></li>
+						<li><a href="#">Направления</a></li>
+						<li><a href="#">Мероприятия</a></li>
+						<li><a href="#">Вопрос-ответ</a></li>
+					</ul>
+					<ul class="flex flex-col items-start gap-2 sm:gap-2.5">
+						<li><a href="#" class="_icon-tg flex items-center gap-2">Написать в Telegram</a></li>
+						<li><a href="#" class="_icon-wa flex items-center gap-2">Написать в WhatsApp</a></li>
+						<li><a href="mailto:iot@gs.donstu.ru" class="_icon-mail flex items-center gap-2">iot@gs.donstu.ru</a></li>
+						<li><a href="tel:88632738648" class="_icon-phone flex items-center gap-2">8 (863) 273-86-48</a></li>
+						<li><a href="tel:88632381769" class="_icon-phone flex items-center gap-2">8 (863) 238-17-69</a></li>
+					</ul>
+					<div class="flex flex-col items-center text-center sm:text-left sm:items-start justify-between gap-2">
+						<div>
+							<p>Мы в соцсетях:</p>
+							<div class="flex items-center gap-1.5 mt-2">
+								<a href="#" class="hover:bg-green duration-500 flex-center w-12 h-12 sm:w-10 sm:h-10 rounded-full border border-gray">
+									<i class="_icon-tg"></i>
+								</a>
+								<a href="#" class="hover:bg-green duration-500 flex-center w-12 h-12 sm:w-10 sm:h-10 rounded-full border border-gray">
+									<i class="_icon-vk"></i>
+								</a>
+								<a href="#" class="hover:bg-green duration-500 flex-center w-12 h-12 sm:w-10 sm:h-10 rounded-full border border-gray">
+									<i class="_icon-yt"></i>
+								</a>
+							</div>
+						</div>
+						<a href="#" class="text-[#838383] hover:underline hidden sm:block">
+							Политика конфиденциальности
+						</a>
+					</div>
+					<div class="flex flex-col items-center text-center sm:text-left sm:items-start justify-between gap-2">
+						<div class="flex flex-col items-start gap-2 sm:gap-2.5">
+							<p>Время работы тех поддержки</p>
+							<p class="text-[#838383]">Пн-Вс 07:00 -- 19:00 (по мск)</p>
+						</div>
+						<p class="text-[#838383] hidden sm:block">
+							© 2025. Все права защищены
+						</p>
+					</div>
+				</div>
+				<div class="flex sm:hidden flex-col items-center gap-2.5 mt-10">
+					<a href="#" class="text-[#838383] hover:underline">
+						Политика конфиденциальности
+					</a>
+					<p class="text-[#838383]">
+						© 2025. Все права защищены
+					</p>
+				</div>
+			</div>
+			<div class="w-full mt-10 sm:mt-20">
+				<img src="img/footer-text.svg" class="w-full" alt="Т-УНИВЕРСИТЕТ">
 			</div>
 		</footer>
 	</div>
@@ -487,7 +631,7 @@
 </div>
  -->
 
-	<script src="js/app.min.js?_v=20250520203445"></script>
+	<script src="js/app.min.js?_v=20250521165656"></script>
 </body>
 
 </html>
