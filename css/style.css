@@ -333,6 +333,9 @@
   .-z-10 {
     z-index: calc(10 * -1);
   }
+  .z-40 {
+    z-index: 40;
+  }
   .z-50 {
     z-index: 50;
   }
@@ -441,6 +444,9 @@
   .h-12 {
     height: calc(var(--spacing) * 12);
   }
+  .h-full {
+    height: 100%;
+  }
   .w-0 {
     width: calc(var(--spacing) * 0);
   }
@@ -455,6 +461,9 @@
   }
   .w-12 {
     width: calc(var(--spacing) * 12);
+  }
+  .w-40 {
+    width: calc(var(--spacing) * 40);
   }
   .w-full {
     width: 100%;

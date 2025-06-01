@@ -9575,739 +9575,715 @@
         }
     };
     ScrollTrigger_getGSAP() && ScrollTrigger_gsap.registerPlugin(ScrollTrigger_ScrollTrigger);
-    var version = "1.3.1";
-    function lenis_clamp(min, input, max) {
-        return Math.max(min, Math.min(input, max));
-    }
-    function lerp(x, y, t) {
-        return (1 - t) * x + t * y;
-    }
-    function damp(x, y, lambda, deltaTime) {
-        return lerp(x, y, 1 - Math.exp(-lambda * deltaTime));
-    }
-    function modulo(n, d) {
-        return (n % d + d) % d;
-    }
-    var Animate = class {
-        isRunning=false;
-        value=0;
-        from=0;
-        to=0;
-        currentTime=0;
-        lerp;
-        duration;
-        easing;
-        onUpdate;
-        advance(deltaTime) {
-            if (!this.isRunning) return;
-            let completed = false;
-            if (this.duration && this.easing) {
-                this.currentTime += deltaTime;
-                const linearProgress = lenis_clamp(0, this.currentTime / this.duration, 1);
-                completed = linearProgress >= 1;
-                const easedProgress = completed ? 1 : this.easing(linearProgress);
-                this.value = this.from + (this.to - this.from) * easedProgress;
-            } else if (this.lerp) {
-                this.value = damp(this.value, this.to, this.lerp * 60, deltaTime);
-                if (Math.round(this.value) === this.to) {
-                    this.value = this.to;
-                    completed = true;
-                }
-            } else {
-                this.value = this.to;
-                completed = true;
-            }
-            if (completed) this.stop();
-            this.onUpdate?.(this.value, completed);
+    function ScrollSmoother_defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];
+            descriptor.enumerable = descriptor.enumerable || false;
+            descriptor.configurable = true;
+            if ("value" in descriptor) descriptor.writable = true;
+            Object.defineProperty(target, descriptor.key, descriptor);
         }
-        stop() {
-            this.isRunning = false;
+    }
+    function ScrollSmoother_createClass(Constructor, protoProps, staticProps) {
+        if (protoProps) ScrollSmoother_defineProperties(Constructor.prototype, protoProps);
+        if (staticProps) ScrollSmoother_defineProperties(Constructor, staticProps);
+        return Constructor;
+    }
+    /*!
+ * ScrollSmoother 3.13.0
+ * https://gsap.com
+ *
+ * @license Copyright 2008-2025, GreenSock. All rights reserved.
+ * Subject to the terms at https://gsap.com/standard-license
+ * @author: Jack Doyle, jack@greensock.com
+*/    var ScrollSmoother_gsap, ScrollSmoother_coreInitted, ScrollSmoother_win, ScrollSmoother_doc, ScrollSmoother_docEl, ScrollSmoother_body, ScrollSmoother_toArray, ScrollSmoother_clamp, ScrollSmoother_ScrollTrigger, _mainInstance, _expo, ScrollSmoother_getVelocityProp, ScrollSmoother_inputObserver, ScrollSmoother_context, _onResizeDelayedCall, ScrollSmoother_windowExists = function _windowExists() {
+        return typeof window !== "undefined";
+    }, ScrollSmoother_getGSAP = function _getGSAP() {
+        return ScrollSmoother_gsap || ScrollSmoother_windowExists() && (ScrollSmoother_gsap = window.gsap) && ScrollSmoother_gsap.registerPlugin && ScrollSmoother_gsap;
+    }, ScrollSmoother_round = function _round(value) {
+        return Math.round(value * 1e5) / 1e5 || 0;
+    }, ScrollSmoother_maxScroll = function _maxScroll(scroller) {
+        return ScrollSmoother_ScrollTrigger.maxScroll(scroller || ScrollSmoother_win);
+    }, _autoDistance = function _autoDistance(el, progress) {
+        var ratio, extraChange, parent = el.parentNode || ScrollSmoother_docEl, b1 = el.getBoundingClientRect(), b2 = parent.getBoundingClientRect(), gapTop = b2.top - b1.top, gapBottom = b2.bottom - b1.bottom, change = (Math.abs(gapTop) > Math.abs(gapBottom) ? gapTop : gapBottom) / (1 - progress), offset = -change * progress;
+        if (change > 0) {
+            ratio = b2.height / (ScrollSmoother_win.innerHeight + b2.height);
+            extraChange = ratio === .5 ? b2.height * 2 : Math.min(b2.height, Math.abs(-change * ratio / (2 * ratio - 1))) * 2 * (progress || 1);
+            offset += progress ? -extraChange * progress : -extraChange / 2;
+            change += extraChange;
         }
-        fromTo(from, to, {lerp: lerp2, duration, easing, onStart, onUpdate}) {
-            this.from = this.value = from;
-            this.to = to;
-            this.lerp = lerp2;
-            this.duration = duration;
-            this.easing = easing;
-            this.currentTime = 0;
-            this.isRunning = true;
-            onStart?.();
-            this.onUpdate = onUpdate;
+        return {
+            change,
+            offset
+        };
+    }, _wrap = function _wrap(el) {
+        var wrapper = ScrollSmoother_doc.querySelector(".ScrollSmoother-wrapper");
+        if (!wrapper) {
+            wrapper = ScrollSmoother_doc.createElement("div");
+            wrapper.classList.add("ScrollSmoother-wrapper");
+            el.parentNode.insertBefore(wrapper, el);
+            wrapper.appendChild(el);
         }
+        return wrapper;
     };
-    function debounce(callback, delay) {
-        let timer;
-        return function(...args) {
-            let context = this;
-            clearTimeout(timer);
-            timer = setTimeout((() => {
-                timer = void 0;
-                callback.apply(context, args);
-            }), delay);
-        };
-    }
-    var Dimensions = class {
-        constructor(wrapper, content, {autoResize = true, debounce: debounceValue = 250} = {}) {
-            this.wrapper = wrapper;
-            this.content = content;
-            if (autoResize) {
-                this.debouncedResize = debounce(this.resize, debounceValue);
-                if (this.wrapper instanceof Window) window.addEventListener("resize", this.debouncedResize, false); else {
-                    this.wrapperResizeObserver = new ResizeObserver(this.debouncedResize);
-                    this.wrapperResizeObserver.observe(this.wrapper);
-                }
-                this.contentResizeObserver = new ResizeObserver(this.debouncedResize);
-                this.contentResizeObserver.observe(this.content);
-            }
-            this.resize();
-        }
-        width=0;
-        height=0;
-        scrollHeight=0;
-        scrollWidth=0;
-        debouncedResize;
-        wrapperResizeObserver;
-        contentResizeObserver;
-        destroy() {
-            this.wrapperResizeObserver?.disconnect();
-            this.contentResizeObserver?.disconnect();
-            if (this.wrapper === window && this.debouncedResize) window.removeEventListener("resize", this.debouncedResize, false);
-        }
-        resize=() => {
-            this.onWrapperResize();
-            this.onContentResize();
-        };
-        onWrapperResize=() => {
-            if (this.wrapper instanceof Window) {
-                this.width = window.innerWidth;
-                this.height = window.innerHeight;
-            } else {
-                this.width = this.wrapper.clientWidth;
-                this.height = this.wrapper.clientHeight;
-            }
-        };
-        onContentResize=() => {
-            if (this.wrapper instanceof Window) {
-                this.scrollHeight = this.content.scrollHeight;
-                this.scrollWidth = this.content.scrollWidth;
-            } else {
-                this.scrollHeight = this.wrapper.scrollHeight;
-                this.scrollWidth = this.wrapper.scrollWidth;
-            }
-        };
-        get limit() {
-            return {
-                x: this.scrollWidth - this.width,
-                y: this.scrollHeight - this.height
-            };
-        }
-    };
-    var Emitter = class {
-        events={};
-        emit(event, ...args) {
-            let callbacks = this.events[event] || [];
-            for (let i = 0, length = callbacks.length; i < length; i++) callbacks[i]?.(...args);
-        }
-        on(event, cb) {
-            this.events[event]?.push(cb) || (this.events[event] = [ cb ]);
-            return () => {
-                this.events[event] = this.events[event]?.filter((i => cb !== i));
-            };
-        }
-        off(event, callback) {
-            this.events[event] = this.events[event]?.filter((i => callback !== i));
-        }
-        destroy() {
-            this.events = {};
-        }
-    };
-    var LINE_HEIGHT = 100 / 6;
-    var listenerOptions = {
-        passive: false
-    };
-    var VirtualScroll = class {
-        constructor(element, options = {
-            wheelMultiplier: 1,
-            touchMultiplier: 1
-        }) {
-            this.element = element;
-            this.options = options;
-            window.addEventListener("resize", this.onWindowResize, false);
-            this.onWindowResize();
-            this.element.addEventListener("wheel", this.onWheel, listenerOptions);
-            this.element.addEventListener("touchstart", this.onTouchStart, listenerOptions);
-            this.element.addEventListener("touchmove", this.onTouchMove, listenerOptions);
-            this.element.addEventListener("touchend", this.onTouchEnd, listenerOptions);
-        }
-        touchStart={
-            x: 0,
-            y: 0
-        };
-        lastDelta={
-            x: 0,
-            y: 0
-        };
-        window={
-            width: 0,
-            height: 0
-        };
-        emitter=new Emitter;
-        on(event, callback) {
-            return this.emitter.on(event, callback);
-        }
-        destroy() {
-            this.emitter.destroy();
-            window.removeEventListener("resize", this.onWindowResize, false);
-            this.element.removeEventListener("wheel", this.onWheel, listenerOptions);
-            this.element.removeEventListener("touchstart", this.onTouchStart, listenerOptions);
-            this.element.removeEventListener("touchmove", this.onTouchMove, listenerOptions);
-            this.element.removeEventListener("touchend", this.onTouchEnd, listenerOptions);
-        }
-        onTouchStart=event => {
-            const {clientX, clientY} = event.targetTouches ? event.targetTouches[0] : event;
-            this.touchStart.x = clientX;
-            this.touchStart.y = clientY;
-            this.lastDelta = {
-                x: 0,
+    var ScrollSmoother = function() {
+        function ScrollSmoother(vars) {
+            var _this = this;
+            ScrollSmoother_coreInitted || ScrollSmoother.register(ScrollSmoother_gsap) || console.warn("Please gsap.registerPlugin(ScrollSmoother)");
+            vars = this.vars = vars || {};
+            _mainInstance && _mainInstance.kill();
+            _mainInstance = this;
+            ScrollSmoother_context(this);
+            var content, wrapper, height, mainST, effects, sections, intervalID, wrapperCSS, contentCSS, paused, pausedNormalizer, recordedRefreshScroll, recordedRefreshScrub, allowUpdates, isProxyScrolling, lastFocusElement, _vars = vars, smoothTouch = _vars.smoothTouch, _onUpdate = _vars.onUpdate, onStop = _vars.onStop, smooth = _vars.smooth, onFocusIn = _vars.onFocusIn, normalizeScroll = _vars.normalizeScroll, wholePixels = _vars.wholePixels, self = this, effectsPrefix = vars.effectsPrefix || "", scrollFunc = ScrollSmoother_ScrollTrigger.getScrollFunc(ScrollSmoother_win), smoothDuration = ScrollSmoother_ScrollTrigger.isTouch === 1 ? smoothTouch === true ? .8 : parseFloat(smoothTouch) || 0 : smooth === 0 || smooth === false ? 0 : parseFloat(smooth) || .8, speed = smoothDuration && +vars.speed || 1, currentY = 0, delta = 0, startupPhase = 1, tracker = ScrollSmoother_getVelocityProp(0), updateVelocity = function updateVelocity() {
+                return tracker.update(-currentY);
+            }, scroll = {
                 y: 0
-            };
-            this.emitter.emit("scroll", {
-                deltaX: 0,
-                deltaY: 0,
-                event
-            });
-        };
-        onTouchMove=event => {
-            const {clientX, clientY} = event.targetTouches ? event.targetTouches[0] : event;
-            const deltaX = -(clientX - this.touchStart.x) * this.options.touchMultiplier;
-            const deltaY = -(clientY - this.touchStart.y) * this.options.touchMultiplier;
-            this.touchStart.x = clientX;
-            this.touchStart.y = clientY;
-            this.lastDelta = {
-                x: deltaX,
-                y: deltaY
-            };
-            this.emitter.emit("scroll", {
-                deltaX,
-                deltaY,
-                event
-            });
-        };
-        onTouchEnd=event => {
-            this.emitter.emit("scroll", {
-                deltaX: this.lastDelta.x,
-                deltaY: this.lastDelta.y,
-                event
-            });
-        };
-        onWheel=event => {
-            let {deltaX, deltaY, deltaMode} = event;
-            const multiplierX = deltaMode === 1 ? LINE_HEIGHT : deltaMode === 2 ? this.window.width : 1;
-            const multiplierY = deltaMode === 1 ? LINE_HEIGHT : deltaMode === 2 ? this.window.height : 1;
-            deltaX *= multiplierX;
-            deltaY *= multiplierY;
-            deltaX *= this.options.wheelMultiplier;
-            deltaY *= this.options.wheelMultiplier;
-            this.emitter.emit("scroll", {
-                deltaX,
-                deltaY,
-                event
-            });
-        };
-        onWindowResize=() => {
-            this.window = {
-                width: window.innerWidth,
-                height: window.innerHeight
-            };
-        };
-    };
-    var Lenis = class {
-        _isScrolling=false;
-        _isStopped=false;
-        _isLocked=false;
-        _preventNextNativeScrollEvent=false;
-        _resetVelocityTimeout=null;
-        __rafID=null;
-        isTouching;
-        time=0;
-        userData={};
-        lastVelocity=0;
-        velocity=0;
-        direction=0;
-        options;
-        targetScroll;
-        animatedScroll;
-        animate=new Animate;
-        emitter=new Emitter;
-        dimensions;
-        virtualScroll;
-        constructor({wrapper = window, content = document.documentElement, eventsTarget = wrapper, smoothWheel = true, syncTouch = false, syncTouchLerp = .075, touchInertiaMultiplier = 35, duration, easing = t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), lerp: lerp2 = .1, infinite = false, orientation = "vertical", gestureOrientation = "vertical", touchMultiplier = 1, wheelMultiplier = 1, autoResize = true, prevent, virtualScroll, overscroll = true, autoRaf = false, anchors = false, autoToggle = false, allowNestedScroll = false, __experimental__naiveDimensions = false} = {}) {
-            window.lenisVersion = version;
-            if (!wrapper || wrapper === document.documentElement) wrapper = window;
-            this.options = {
-                wrapper,
-                content,
-                eventsTarget,
-                smoothWheel,
-                syncTouch,
-                syncTouchLerp,
-                touchInertiaMultiplier,
-                duration,
-                easing,
-                lerp: lerp2,
-                infinite,
-                gestureOrientation,
-                orientation,
-                touchMultiplier,
-                wheelMultiplier,
-                autoResize,
-                prevent,
-                virtualScroll,
-                overscroll,
-                autoRaf,
-                anchors,
-                autoToggle,
-                allowNestedScroll,
-                __experimental__naiveDimensions
-            };
-            this.dimensions = new Dimensions(wrapper, content, {
-                autoResize
-            });
-            this.updateClassName();
-            this.targetScroll = this.animatedScroll = this.actualScroll;
-            this.options.wrapper.addEventListener("scroll", this.onNativeScroll, false);
-            this.options.wrapper.addEventListener("scrollend", this.onScrollEnd, {
-                capture: true
-            });
-            if (this.options.anchors && this.options.wrapper === window) this.options.wrapper.addEventListener("click", this.onClick, false);
-            this.options.wrapper.addEventListener("pointerdown", this.onPointerDown, false);
-            this.virtualScroll = new VirtualScroll(eventsTarget, {
-                touchMultiplier,
-                wheelMultiplier
-            });
-            this.virtualScroll.on("scroll", this.onVirtualScroll);
-            if (this.options.autoToggle) this.rootElement.addEventListener("transitionend", this.onTransitionEnd, {
-                passive: true
-            });
-            if (this.options.autoRaf) this.__rafID = requestAnimationFrame(this.raf);
-        }
-        destroy() {
-            this.emitter.destroy();
-            this.options.wrapper.removeEventListener("scroll", this.onNativeScroll, false);
-            this.options.wrapper.removeEventListener("scrollend", this.onScrollEnd, {
-                capture: true
-            });
-            this.options.wrapper.removeEventListener("pointerdown", this.onPointerDown, false);
-            if (this.options.anchors && this.options.wrapper === window) this.options.wrapper.removeEventListener("click", this.onClick, false);
-            this.virtualScroll.destroy();
-            this.dimensions.destroy();
-            this.cleanUpClassName();
-            if (this.__rafID) cancelAnimationFrame(this.__rafID);
-        }
-        on(event, callback) {
-            return this.emitter.on(event, callback);
-        }
-        off(event, callback) {
-            return this.emitter.off(event, callback);
-        }
-        onScrollEnd=e => {
-            if (!(e instanceof CustomEvent)) if (this.isScrolling === "smooth" || this.isScrolling === false) e.stopPropagation();
-        };
-        dispatchScrollendEvent=() => {
-            this.options.wrapper.dispatchEvent(new CustomEvent("scrollend", {
-                bubbles: this.options.wrapper === window,
-                detail: {
-                    lenisScrollEnd: true
+            }, removeScroll = function removeScroll() {
+                return content.style.overflow = "visible";
+            }, killScrub = function killScrub(trigger) {
+                trigger.update();
+                var scrub = trigger.getTween();
+                if (scrub) {
+                    scrub.pause();
+                    scrub._time = scrub._dur;
+                    scrub._tTime = scrub._tDur;
                 }
-            }));
-        };
-        onTransitionEnd=event => {
-            if (event.propertyName.includes("overflow")) {
-                const property = this.isHorizontal ? "overflow-x" : "overflow-y";
-                const overflow = getComputedStyle(this.rootElement)[property];
-                if ([ "hidden", "clip" ].includes(overflow)) this.stop(); else this.start();
-            }
-        };
-        setScroll(scroll) {
-            if (this.isHorizontal) this.options.wrapper.scrollTo({
-                left: scroll,
-                behavior: "instant"
-            }); else this.options.wrapper.scrollTo({
-                top: scroll,
-                behavior: "instant"
-            });
-        }
-        onClick=event => {
-            const path = event.composedPath();
-            const anchor = path.find((node => node instanceof HTMLAnchorElement && (node.getAttribute("href")?.startsWith("#") || node.getAttribute("href")?.startsWith("/#") || node.getAttribute("href")?.startsWith("./#"))));
-            if (anchor) {
-                const id = anchor.getAttribute("href");
-                if (id) {
-                    const options = typeof this.options.anchors === "object" && this.options.anchors ? this.options.anchors : void 0;
-                    let target = `#${id.split("#")[1]}`;
-                    if ([ "#", "/#", "./#", "#top", "/#top", "./#top" ].includes(id)) target = 0;
-                    this.scrollTo(target, options);
-                }
-            }
-        };
-        onPointerDown=event => {
-            if (event.button === 1) this.reset();
-        };
-        onVirtualScroll=data => {
-            if (typeof this.options.virtualScroll === "function" && this.options.virtualScroll(data) === false) return;
-            const {deltaX, deltaY, event} = data;
-            this.emitter.emit("virtual-scroll", {
-                deltaX,
-                deltaY,
-                event
-            });
-            if (event.ctrlKey) return;
-            if (event.lenisStopPropagation) return;
-            const isTouch = event.type.includes("touch");
-            const isWheel = event.type.includes("wheel");
-            this.isTouching = event.type === "touchstart" || event.type === "touchmove";
-            const isClickOrTap = deltaX === 0 && deltaY === 0;
-            const isTapToStop = this.options.syncTouch && isTouch && event.type === "touchstart" && isClickOrTap && !this.isStopped && !this.isLocked;
-            if (isTapToStop) {
-                this.reset();
-                return;
-            }
-            const isUnknownGesture = this.options.gestureOrientation === "vertical" && deltaY === 0 || this.options.gestureOrientation === "horizontal" && deltaX === 0;
-            if (isClickOrTap || isUnknownGesture) return;
-            let composedPath = event.composedPath();
-            composedPath = composedPath.slice(0, composedPath.indexOf(this.rootElement));
-            const prevent = this.options.prevent;
-            if (!!composedPath.find((node => node instanceof HTMLElement && (typeof prevent === "function" && prevent?.(node) || node.hasAttribute?.("data-lenis-prevent") || isTouch && node.hasAttribute?.("data-lenis-prevent-touch") || isWheel && node.hasAttribute?.("data-lenis-prevent-wheel") || this.options.allowNestedScroll && this.checkNestedScroll(node, {
-                deltaX,
-                deltaY
-            }))))) return;
-            if (this.isStopped || this.isLocked) {
-                event.preventDefault();
-                return;
-            }
-            const isSmooth = this.options.syncTouch && isTouch || this.options.smoothWheel && isWheel;
-            if (!isSmooth) {
-                this.isScrolling = "native";
-                this.animate.stop();
-                event.lenisStopPropagation = true;
-                return;
-            }
-            let delta = deltaY;
-            if (this.options.gestureOrientation === "both") delta = Math.abs(deltaY) > Math.abs(deltaX) ? deltaY : deltaX; else if (this.options.gestureOrientation === "horizontal") delta = deltaX;
-            if (!this.options.overscroll || this.options.infinite || this.options.wrapper !== window && (this.animatedScroll > 0 && this.animatedScroll < this.limit || this.animatedScroll === 0 && deltaY > 0 || this.animatedScroll === this.limit && deltaY < 0)) event.lenisStopPropagation = true;
-            event.preventDefault();
-            const isSyncTouch = isTouch && this.options.syncTouch;
-            const isTouchEnd = isTouch && event.type === "touchend";
-            const hasTouchInertia = isTouchEnd && Math.abs(delta) > 5;
-            if (hasTouchInertia) delta = this.velocity * this.options.touchInertiaMultiplier;
-            this.scrollTo(this.targetScroll + delta, {
-                programmatic: false,
-                ...isSyncTouch ? {
-                    lerp: hasTouchInertia ? this.options.syncTouchLerp : 1
-                } : {
-                    lerp: this.options.lerp,
-                    duration: this.options.duration,
-                    easing: this.options.easing
-                }
-            });
-        };
-        resize() {
-            this.dimensions.resize();
-            this.animatedScroll = this.targetScroll = this.actualScroll;
-            this.emit();
-        }
-        emit() {
-            this.emitter.emit("scroll", this);
-        }
-        onNativeScroll=() => {
-            if (this._resetVelocityTimeout !== null) {
-                clearTimeout(this._resetVelocityTimeout);
-                this._resetVelocityTimeout = null;
-            }
-            if (this._preventNextNativeScrollEvent) {
-                this._preventNextNativeScrollEvent = false;
-                return;
-            }
-            if (this.isScrolling === false || this.isScrolling === "native") {
-                const lastScroll = this.animatedScroll;
-                this.animatedScroll = this.targetScroll = this.actualScroll;
-                this.lastVelocity = this.velocity;
-                this.velocity = this.animatedScroll - lastScroll;
-                this.direction = Math.sign(this.animatedScroll - lastScroll);
-                if (!this.isStopped) this.isScrolling = "native";
-                this.emit();
-                if (this.velocity !== 0) this._resetVelocityTimeout = setTimeout((() => {
-                    this.lastVelocity = this.velocity;
-                    this.velocity = 0;
-                    this.isScrolling = false;
-                    this.emit();
-                }), 400);
-            }
-        };
-        reset() {
-            this.isLocked = false;
-            this.isScrolling = false;
-            this.animatedScroll = this.targetScroll = this.actualScroll;
-            this.lastVelocity = this.velocity = 0;
-            this.animate.stop();
-        }
-        start() {
-            if (!this.isStopped) return;
-            this.reset();
-            this.isStopped = false;
-        }
-        stop() {
-            if (this.isStopped) return;
-            this.reset();
-            this.isStopped = true;
-        }
-        raf=time => {
-            const deltaTime = time - (this.time || time);
-            this.time = time;
-            this.animate.advance(deltaTime * .001);
-            if (this.options.autoRaf) this.__rafID = requestAnimationFrame(this.raf);
-        };
-        scrollTo(target, {offset = 0, immediate = false, lock = false, duration = this.options.duration, easing = this.options.easing, lerp: lerp2 = this.options.lerp, onStart, onComplete, force = false, programmatic = true, userData} = {}) {
-            if ((this.isStopped || this.isLocked) && !force) return;
-            if (typeof target === "string" && [ "top", "left", "start" ].includes(target)) target = 0; else if (typeof target === "string" && [ "bottom", "right", "end" ].includes(target)) target = this.limit; else {
-                let node;
-                if (typeof target === "string") node = document.querySelector(target); else if (target instanceof HTMLElement && target?.nodeType) node = target;
-                if (node) {
-                    if (this.options.wrapper !== window) {
-                        const wrapperRect = this.rootElement.getBoundingClientRect();
-                        offset -= this.isHorizontal ? wrapperRect.left : wrapperRect.top;
+                isProxyScrolling = false;
+                trigger.animation.progress(trigger.progress, true);
+            }, render = function render(y, force) {
+                if (y !== currentY && !paused || force) {
+                    wholePixels && (y = Math.round(y));
+                    if (smoothDuration) {
+                        content.style.transform = "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, " + y + ", 0, 1)";
+                        content._gsap.y = y + "px";
                     }
-                    const rect = node.getBoundingClientRect();
-                    target = (this.isHorizontal ? rect.left : rect.top) + this.animatedScroll;
+                    delta = y - currentY;
+                    currentY = y;
+                    ScrollSmoother_ScrollTrigger.isUpdating || ScrollSmoother.isRefreshing || ScrollSmoother_ScrollTrigger.update();
                 }
-            }
-            if (typeof target !== "number") return;
-            target += offset;
-            target = Math.round(target);
-            if (this.options.infinite) {
-                if (programmatic) {
-                    this.targetScroll = this.animatedScroll = this.scroll;
-                    const distance = target - this.animatedScroll;
-                    if (distance > this.limit / 2) target -= this.limit; else if (distance < -this.limit / 2) target += this.limit;
+            }, scrollTop = function scrollTop(value) {
+                if (arguments.length) {
+                    value < 0 && (value = 0);
+                    scroll.y = -value;
+                    isProxyScrolling = true;
+                    paused ? currentY = -value : render(-value);
+                    ScrollSmoother_ScrollTrigger.isRefreshing ? mainST.update() : scrollFunc(value / speed);
+                    return this;
                 }
-            } else target = lenis_clamp(0, target, this.limit);
-            if (target === this.targetScroll) {
-                onStart?.(this);
-                onComplete?.(this);
-                return;
-            }
-            this.userData = userData ?? {};
-            if (immediate) {
-                this.animatedScroll = this.targetScroll = target;
-                this.setScroll(this.scroll);
-                this.reset();
-                this.preventNextNativeScrollEvent();
-                this.emit();
-                onComplete?.(this);
-                this.userData = {};
-                requestAnimationFrame((() => {
-                    this.dispatchScrollendEvent();
+                return -currentY;
+            }, resizeObserver = typeof ResizeObserver !== "undefined" && vars.autoResize !== false && new ResizeObserver((function() {
+                if (!ScrollSmoother_ScrollTrigger.isRefreshing) {
+                    var max = ScrollSmoother_maxScroll(wrapper) * speed;
+                    max < -currentY && scrollTop(max);
+                    _onResizeDelayedCall.restart(true);
+                }
+            })), _onFocusIn = function _onFocusIn(e) {
+                wrapper.scrollTop = 0;
+                if (e.target.contains && e.target.contains(wrapper) || onFocusIn && onFocusIn(_this, e) === false) return;
+                ScrollSmoother_ScrollTrigger.isInViewport(e.target) || e.target === lastFocusElement || _this.scrollTo(e.target, false, "center center");
+                lastFocusElement = e.target;
+            }, _transformPosition = function _transformPosition(position, st) {
+                if (position < st.start) return position;
+                var ratio = isNaN(st.ratio) ? 1 : st.ratio, change = st.end - st.start, distance = position - st.start, offset = st.offset || 0, pins = st.pins || [], pinOffset = pins.offset || 0, progressOffset = st._startClamp && st.start <= 0 || st.pins && st.pins.offset ? 0 : st._endClamp && st.end === ScrollSmoother_maxScroll() ? 1 : .5;
+                pins.forEach((function(p) {
+                    change -= p.distance;
+                    if (p.nativeStart <= position) distance -= p.distance;
                 }));
-                return;
-            }
-            if (!programmatic) this.targetScroll = target;
-            this.animate.fromTo(this.animatedScroll, target, {
-                duration,
-                easing,
-                lerp: lerp2,
-                onStart: () => {
-                    if (lock) this.isLocked = true;
-                    this.isScrolling = "smooth";
-                    onStart?.(this);
-                },
-                onUpdate: (value, completed) => {
-                    this.isScrolling = "smooth";
-                    this.lastVelocity = this.velocity;
-                    this.velocity = value - this.animatedScroll;
-                    this.direction = Math.sign(this.velocity);
-                    this.animatedScroll = value;
-                    this.setScroll(this.scroll);
-                    if (programmatic) this.targetScroll = value;
-                    if (!completed) this.emit();
-                    if (completed) {
-                        this.reset();
-                        this.emit();
-                        onComplete?.(this);
-                        this.userData = {};
-                        requestAnimationFrame((() => {
-                            this.dispatchScrollendEvent();
-                        }));
-                        this.preventNextNativeScrollEvent();
+                if (pinOffset) distance *= (change - pinOffset / ratio) / change;
+                return position + (distance - offset * progressOffset) / ratio - distance;
+            }, adjustEffectRelatedTriggers = function adjustEffectRelatedTriggers(st, triggers, partial) {
+                partial || (st.pins.length = st.pins.offset = 0);
+                var dif, isClamped, start, end, nativeStart, nativeEnd, i, trig, pins = st.pins, markers = st.markers;
+                for (i = 0; i < triggers.length; i++) {
+                    trig = triggers[i];
+                    if (st.trigger && trig.trigger && st !== trig && (trig.trigger === st.trigger || trig.pinnedContainer === st.trigger || st.trigger.contains(trig.trigger))) {
+                        nativeStart = trig._startNative || trig._startClamp || trig.start;
+                        nativeEnd = trig._endNative || trig._endClamp || trig.end;
+                        start = _transformPosition(nativeStart, st);
+                        end = trig.pin && nativeEnd > 0 ? start + (nativeEnd - nativeStart) : _transformPosition(nativeEnd, st);
+                        trig.setPositions(start, end, true, (trig._startClamp ? Math.max(0, start) : start) - nativeStart);
+                        trig.markerStart && markers.push(ScrollSmoother_gsap.quickSetter([ trig.markerStart, trig.markerEnd ], "y", "px"));
+                        if (trig.pin && trig.end > 0 && !partial) {
+                            dif = trig.end - trig.start;
+                            isClamped = st._startClamp && trig.start < 0;
+                            if (isClamped) {
+                                if (st.start > 0) {
+                                    st.setPositions(0, st.end + (st._startNative - st.start), true);
+                                    adjustEffectRelatedTriggers(st, triggers);
+                                    return;
+                                }
+                                dif += trig.start;
+                                pins.offset = -trig.start;
+                            }
+                            pins.push({
+                                start: trig.start,
+                                nativeStart,
+                                end: trig.end,
+                                distance: dif,
+                                trig
+                            });
+                            st.setPositions(st.start, st.end + (isClamped ? -trig.start : dif), true);
+                        }
                     }
                 }
+            }, adjustParallaxPosition = function adjustParallaxPosition(triggers, createdAfterEffectWasApplied) {
+                effects.forEach((function(st) {
+                    return adjustEffectRelatedTriggers(st, triggers, createdAfterEffectWasApplied);
+                }));
+            }, onRefresh = function onRefresh() {
+                ScrollSmoother_docEl = ScrollSmoother_doc.documentElement;
+                ScrollSmoother_body = ScrollSmoother_doc.body;
+                removeScroll();
+                requestAnimationFrame(removeScroll);
+                if (effects) {
+                    ScrollSmoother_ScrollTrigger.getAll().forEach((function(st) {
+                        st._startNative = st.start;
+                        st._endNative = st.end;
+                    }));
+                    effects.forEach((function(st) {
+                        var start = st._startClamp || st.start, end = st.autoSpeed ? Math.min(ScrollSmoother_maxScroll(), st.end) : start + Math.abs((st.end - start) / st.ratio), offset = end - st.end;
+                        start -= offset / 2;
+                        end -= offset / 2;
+                        if (start > end) {
+                            var s = start;
+                            start = end;
+                            end = s;
+                        }
+                        if (st._startClamp && start < 0) {
+                            end = st.ratio < 0 ? ScrollSmoother_maxScroll() : st.end / st.ratio;
+                            offset = end - st.end;
+                            start = 0;
+                        } else if (st.ratio < 0 || st._endClamp && end >= ScrollSmoother_maxScroll()) {
+                            end = ScrollSmoother_maxScroll();
+                            start = st.ratio < 0 ? 0 : st.ratio > 1 ? 0 : end - (end - st.start) / st.ratio;
+                            offset = (end - start) * st.ratio - (st.end - st.start);
+                        }
+                        st.offset = offset || 1e-4;
+                        st.pins.length = st.pins.offset = 0;
+                        st.setPositions(start, end, true);
+                    }));
+                    adjustParallaxPosition(ScrollSmoother_ScrollTrigger.sort());
+                }
+                tracker.reset();
+            }, addOnRefresh = function addOnRefresh() {
+                return ScrollSmoother_ScrollTrigger.addEventListener("refresh", onRefresh);
+            }, restoreEffects = function restoreEffects() {
+                return effects && effects.forEach((function(st) {
+                    return st.vars.onRefresh(st);
+                }));
+            }, revertEffects = function revertEffects() {
+                effects && effects.forEach((function(st) {
+                    return st.vars.onRefreshInit(st);
+                }));
+                return restoreEffects;
+            }, effectValueGetter = function effectValueGetter(name, value, index, el) {
+                return function() {
+                    var v = typeof value === "function" ? value(index, el) : value;
+                    v || v === 0 || (v = el.getAttribute("data-" + effectsPrefix + name) || (name === "speed" ? 1 : 0));
+                    el.setAttribute("data-" + effectsPrefix + name, v);
+                    var clamp = (v + "").substr(0, 6) === "clamp(";
+                    return {
+                        clamp,
+                        value: clamp ? v.substr(6, v.length - 7) : v
+                    };
+                };
+            }, createEffect = function createEffect(el, speed, lag, index, effectsPadding) {
+                effectsPadding = (typeof effectsPadding === "function" ? effectsPadding(index, el) : effectsPadding) || 0;
+                var ratio, st, autoSpeed, scrub, progressOffset, yOffset, getSpeed = effectValueGetter("speed", speed, index, el), getLag = effectValueGetter("lag", lag, index, el), startY = ScrollSmoother_gsap.getProperty(el, "y"), cache = el._gsap, pins = [], initDynamicValues = function initDynamicValues() {
+                    speed = getSpeed();
+                    lag = parseFloat(getLag().value);
+                    ratio = parseFloat(speed.value) || 1;
+                    autoSpeed = speed.value === "auto";
+                    progressOffset = autoSpeed || st && st._startClamp && st.start <= 0 || pins.offset ? 0 : st && st._endClamp && st.end === ScrollSmoother_maxScroll() ? 1 : .5;
+                    scrub && scrub.kill();
+                    scrub = lag && ScrollSmoother_gsap.to(el, {
+                        ease: _expo,
+                        overwrite: false,
+                        y: "+=0",
+                        duration: lag
+                    });
+                    if (st) {
+                        st.ratio = ratio;
+                        st.autoSpeed = autoSpeed;
+                    }
+                }, revert = function revert() {
+                    cache.y = startY + "px";
+                    cache.renderTransform(1);
+                    initDynamicValues();
+                }, markers = [], change = 0, updateChange = function updateChange(self) {
+                    if (autoSpeed) {
+                        revert();
+                        var auto = _autoDistance(el, ScrollSmoother_clamp(0, 1, -self.start / (self.end - self.start)));
+                        change = auto.change;
+                        yOffset = auto.offset;
+                    } else {
+                        yOffset = pins.offset || 0;
+                        change = (self.end - self.start - yOffset) * (1 - ratio);
+                    }
+                    pins.forEach((function(p) {
+                        return change -= p.distance * (1 - ratio);
+                    }));
+                    self.offset = change || .001;
+                    self.vars.onUpdate(self);
+                    scrub && scrub.progress(1);
+                };
+                initDynamicValues();
+                if (ratio !== 1 || autoSpeed || scrub) {
+                    st = ScrollSmoother_ScrollTrigger.create({
+                        trigger: autoSpeed ? el.parentNode : el,
+                        start: function start() {
+                            return speed.clamp ? "clamp(top bottom+=" + effectsPadding + ")" : "top bottom+=" + effectsPadding;
+                        },
+                        end: function end() {
+                            return speed.value < 0 ? "max" : speed.clamp ? "clamp(bottom top-=" + effectsPadding + ")" : "bottom top-=" + effectsPadding;
+                        },
+                        scroller: wrapper,
+                        scrub: true,
+                        refreshPriority: -999,
+                        onRefreshInit: revert,
+                        onRefresh: updateChange,
+                        onKill: function onKill(self) {
+                            var i = effects.indexOf(self);
+                            i >= 0 && effects.splice(i, 1);
+                            revert();
+                        },
+                        onUpdate: function onUpdate(self) {
+                            var pin, scrollY, end, y = startY + change * (self.progress - progressOffset), i = pins.length, extraY = 0;
+                            if (self.offset) {
+                                if (i) {
+                                    scrollY = -currentY;
+                                    end = self.end;
+                                    while (i--) {
+                                        pin = pins[i];
+                                        if (pin.trig.isActive || scrollY >= pin.start && scrollY <= pin.end) {
+                                            if (scrub) {
+                                                pin.trig.progress += pin.trig.direction < 0 ? .001 : -.001;
+                                                pin.trig.update(0, 0, 1);
+                                                scrub.resetTo("y", parseFloat(cache.y), -delta, true);
+                                                startupPhase && scrub.progress(1);
+                                            }
+                                            return;
+                                        }
+                                        scrollY > pin.end && (extraY += pin.distance);
+                                        end -= pin.distance;
+                                    }
+                                    y = startY + extraY + change * ((ScrollSmoother_gsap.utils.clamp(self.start, self.end, scrollY) - self.start - extraY) / (end - self.start) - progressOffset);
+                                }
+                                markers.length && !autoSpeed && markers.forEach((function(setter) {
+                                    return setter(y - extraY);
+                                }));
+                                y = ScrollSmoother_round(y + yOffset);
+                                if (scrub) {
+                                    scrub.resetTo("y", y, -delta, true);
+                                    startupPhase && scrub.progress(1);
+                                } else {
+                                    cache.y = y + "px";
+                                    cache.renderTransform(1);
+                                }
+                            }
+                        }
+                    });
+                    updateChange(st);
+                    ScrollSmoother_gsap.core.getCache(st.trigger).stRevert = revertEffects;
+                    st.startY = startY;
+                    st.pins = pins;
+                    st.markers = markers;
+                    st.ratio = ratio;
+                    st.autoSpeed = autoSpeed;
+                    el.style.willChange = "transform";
+                }
+                return st;
+            };
+            addOnRefresh();
+            ScrollSmoother_ScrollTrigger.addEventListener("killAll", addOnRefresh);
+            ScrollSmoother_gsap.delayedCall(.5, (function() {
+                return startupPhase = 0;
+            }));
+            this.scrollTop = scrollTop;
+            this.scrollTo = function(target, smooth, position) {
+                var p = ScrollSmoother_gsap.utils.clamp(0, ScrollSmoother_maxScroll(), isNaN(target) ? _this.offset(target, position, !!smooth && !paused) : +target);
+                !smooth ? scrollTop(p) : paused ? ScrollSmoother_gsap.to(_this, {
+                    duration: smoothDuration,
+                    scrollTop: p,
+                    overwrite: "auto",
+                    ease: _expo
+                }) : scrollFunc(p);
+            };
+            this.offset = function(target, position, ignoreSpeed) {
+                target = ScrollSmoother_toArray(target)[0];
+                var y, cssText = target.style.cssText, st = ScrollSmoother_ScrollTrigger.create({
+                    trigger: target,
+                    start: position || "top top"
+                });
+                if (effects) startupPhase ? ScrollSmoother_ScrollTrigger.refresh() : adjustParallaxPosition([ st ], true);
+                y = st.start / (ignoreSpeed ? speed : 1);
+                st.kill(false);
+                target.style.cssText = cssText;
+                ScrollSmoother_gsap.core.getCache(target).uncache = 1;
+                return y;
+            };
+            function refreshHeight() {
+                height = content.clientHeight;
+                content.style.overflow = "visible";
+                ScrollSmoother_body.style.height = ScrollSmoother_win.innerHeight + (height - ScrollSmoother_win.innerHeight) / speed + "px";
+                return height - ScrollSmoother_win.innerHeight;
+            }
+            this.content = function(element) {
+                if (arguments.length) {
+                    var newContent = ScrollSmoother_toArray(element || "#smooth-content")[0] || console.warn("ScrollSmoother needs a valid content element.") || ScrollSmoother_body.children[0];
+                    if (newContent !== content) {
+                        content = newContent;
+                        contentCSS = content.getAttribute("style") || "";
+                        resizeObserver && resizeObserver.observe(content);
+                        ScrollSmoother_gsap.set(content, {
+                            overflow: "visible",
+                            width: "100%",
+                            boxSizing: "border-box",
+                            y: "+=0"
+                        });
+                        smoothDuration || ScrollSmoother_gsap.set(content, {
+                            clearProps: "transform"
+                        });
+                    }
+                    return this;
+                }
+                return content;
+            };
+            this.wrapper = function(element) {
+                if (arguments.length) {
+                    wrapper = ScrollSmoother_toArray(element || "#smooth-wrapper")[0] || _wrap(content);
+                    wrapperCSS = wrapper.getAttribute("style") || "";
+                    refreshHeight();
+                    ScrollSmoother_gsap.set(wrapper, smoothDuration ? {
+                        overflow: "hidden",
+                        position: "fixed",
+                        height: "100%",
+                        width: "100%",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0
+                    } : {
+                        overflow: "visible",
+                        position: "relative",
+                        width: "100%",
+                        height: "auto",
+                        top: "auto",
+                        bottom: "auto",
+                        left: "auto",
+                        right: "auto"
+                    });
+                    return this;
+                }
+                return wrapper;
+            };
+            this.effects = function(targets, config) {
+                var _effects;
+                effects || (effects = []);
+                if (!targets) return effects.slice(0);
+                targets = ScrollSmoother_toArray(targets);
+                targets.forEach((function(target) {
+                    var i = effects.length;
+                    while (i--) effects[i].trigger === target && effects[i].kill();
+                }));
+                config = config || {};
+                var i, st, _config = config, speed = _config.speed, lag = _config.lag, effectsPadding = _config.effectsPadding, effectsToAdd = [];
+                for (i = 0; i < targets.length; i++) {
+                    st = createEffect(targets[i], speed, lag, i, effectsPadding);
+                    st && effectsToAdd.push(st);
+                }
+                (_effects = effects).push.apply(_effects, effectsToAdd);
+                config.refresh !== false && ScrollSmoother_ScrollTrigger.refresh();
+                return effectsToAdd;
+            };
+            this.sections = function(targets, config) {
+                var _sections;
+                sections || (sections = []);
+                if (!targets) return sections.slice(0);
+                var newSections = ScrollSmoother_toArray(targets).map((function(el) {
+                    return ScrollSmoother_ScrollTrigger.create({
+                        trigger: el,
+                        start: "top 120%",
+                        end: "bottom -20%",
+                        onToggle: function onToggle(self) {
+                            el.style.opacity = self.isActive ? "1" : "0";
+                            el.style.pointerEvents = self.isActive ? "all" : "none";
+                        }
+                    });
+                }));
+                config && config.add ? (_sections = sections).push.apply(_sections, newSections) : sections = newSections.slice(0);
+                return newSections;
+            };
+            this.content(vars.content);
+            this.wrapper(vars.wrapper);
+            this.render = function(y) {
+                return render(y || y === 0 ? y : currentY);
+            };
+            this.getVelocity = function() {
+                return tracker.getVelocity(-currentY);
+            };
+            ScrollSmoother_ScrollTrigger.scrollerProxy(wrapper, {
+                scrollTop,
+                scrollHeight: function scrollHeight() {
+                    return refreshHeight() && ScrollSmoother_body.scrollHeight;
+                },
+                fixedMarkers: vars.fixedMarkers !== false && !!smoothDuration,
+                content,
+                getBoundingClientRect: function getBoundingClientRect() {
+                    return {
+                        top: 0,
+                        left: 0,
+                        width: ScrollSmoother_win.innerWidth,
+                        height: ScrollSmoother_win.innerHeight
+                    };
+                }
             });
-        }
-        preventNextNativeScrollEvent() {
-            this._preventNextNativeScrollEvent = true;
-            requestAnimationFrame((() => {
-                this._preventNextNativeScrollEvent = false;
+            ScrollSmoother_ScrollTrigger.defaults({
+                scroller: wrapper
+            });
+            var existingScrollTriggers = ScrollSmoother_ScrollTrigger.getAll().filter((function(st) {
+                return st.scroller === ScrollSmoother_win || st.scroller === wrapper;
+            }));
+            existingScrollTriggers.forEach((function(st) {
+                return st.revert(true, true);
+            }));
+            mainST = ScrollSmoother_ScrollTrigger.create({
+                animation: ScrollSmoother_gsap.fromTo(scroll, {
+                    y: function y() {
+                        allowUpdates = 0;
+                        return 0;
+                    }
+                }, {
+                    y: function y() {
+                        allowUpdates = 1;
+                        return -refreshHeight();
+                    },
+                    immediateRender: false,
+                    ease: "none",
+                    data: "ScrollSmoother",
+                    duration: 100,
+                    onUpdate: function onUpdate() {
+                        if (allowUpdates) {
+                            var force = isProxyScrolling;
+                            if (force) {
+                                killScrub(mainST);
+                                scroll.y = currentY;
+                            }
+                            render(scroll.y, force);
+                            updateVelocity();
+                            _onUpdate && !paused && _onUpdate(self);
+                        }
+                    }
+                }),
+                onRefreshInit: function onRefreshInit(self) {
+                    if (ScrollSmoother.isRefreshing) return;
+                    ScrollSmoother.isRefreshing = true;
+                    if (effects) {
+                        var _pins = ScrollSmoother_ScrollTrigger.getAll().filter((function(st) {
+                            return !!st.pin;
+                        }));
+                        effects.forEach((function(st) {
+                            if (!st.vars.pinnedContainer) _pins.forEach((function(pinST) {
+                                if (pinST.pin.contains(st.trigger)) {
+                                    var v = st.vars;
+                                    v.pinnedContainer = pinST.pin;
+                                    st.vars = null;
+                                    st.init(v, st.animation);
+                                }
+                            }));
+                        }));
+                    }
+                    var scrub = self.getTween();
+                    recordedRefreshScrub = scrub && scrub._end > scrub._dp._time;
+                    recordedRefreshScroll = currentY;
+                    scroll.y = 0;
+                    if (smoothDuration) {
+                        ScrollSmoother_ScrollTrigger.isTouch === 1 && (wrapper.style.position = "absolute");
+                        wrapper.scrollTop = 0;
+                        ScrollSmoother_ScrollTrigger.isTouch === 1 && (wrapper.style.position = "fixed");
+                    }
+                },
+                onRefresh: function onRefresh(self) {
+                    self.animation.invalidate();
+                    self.setPositions(self.start, refreshHeight() / speed);
+                    recordedRefreshScrub || killScrub(self);
+                    scroll.y = -scrollFunc() * speed;
+                    render(scroll.y);
+                    if (!startupPhase) {
+                        recordedRefreshScrub && (isProxyScrolling = false);
+                        self.animation.progress(ScrollSmoother_gsap.utils.clamp(0, 1, recordedRefreshScroll / speed / -self.end));
+                    }
+                    if (recordedRefreshScrub) {
+                        self.progress -= .001;
+                        self.update();
+                    }
+                    ScrollSmoother.isRefreshing = false;
+                },
+                id: "ScrollSmoother",
+                scroller: ScrollSmoother_win,
+                invalidateOnRefresh: true,
+                start: 0,
+                refreshPriority: -9999,
+                end: function end() {
+                    return refreshHeight() / speed;
+                },
+                onScrubComplete: function onScrubComplete() {
+                    tracker.reset();
+                    onStop && onStop(_this);
+                },
+                scrub: smoothDuration || true
+            });
+            this.smooth = function(value) {
+                if (arguments.length) {
+                    smoothDuration = value || 0;
+                    speed = smoothDuration && +vars.speed || 1;
+                    mainST.scrubDuration(value);
+                }
+                return mainST.getTween() ? mainST.getTween().duration() : 0;
+            };
+            mainST.getTween() && (mainST.getTween().vars.ease = vars.ease || _expo);
+            this.scrollTrigger = mainST;
+            vars.effects && this.effects(vars.effects === true ? "[data-" + effectsPrefix + "speed], [data-" + effectsPrefix + "lag]" : vars.effects, {
+                effectsPadding: vars.effectsPadding,
+                refresh: false
+            });
+            vars.sections && this.sections(vars.sections === true ? "[data-section]" : vars.sections);
+            existingScrollTriggers.forEach((function(st) {
+                st.vars.scroller = wrapper;
+                st.revert(false, true);
+                st.init(st.vars, st.animation);
+            }));
+            this.paused = function(value, allowNestedScroll) {
+                if (arguments.length) {
+                    if (!!paused !== value) if (value) {
+                        mainST.getTween() && mainST.getTween().pause();
+                        scrollFunc(-currentY / speed);
+                        tracker.reset();
+                        pausedNormalizer = ScrollSmoother_ScrollTrigger.normalizeScroll();
+                        pausedNormalizer && pausedNormalizer.disable();
+                        paused = ScrollSmoother_ScrollTrigger.observe({
+                            preventDefault: true,
+                            type: "wheel,touch,scroll",
+                            debounce: false,
+                            allowClicks: true,
+                            onChangeY: function onChangeY() {
+                                return scrollTop(-currentY);
+                            }
+                        });
+                        paused.nested = ScrollSmoother_inputObserver(ScrollSmoother_docEl, "wheel,touch,scroll", true, allowNestedScroll !== false);
+                    } else {
+                        paused.nested.kill();
+                        paused.kill();
+                        paused = 0;
+                        pausedNormalizer && pausedNormalizer.enable();
+                        mainST.progress = (-currentY / speed - mainST.start) / (mainST.end - mainST.start);
+                        killScrub(mainST);
+                    }
+                    return this;
+                }
+                return !!paused;
+            };
+            this.kill = this.revert = function() {
+                _this.paused(false);
+                killScrub(mainST);
+                mainST.kill();
+                var triggers = (effects || []).concat(sections || []), i = triggers.length;
+                while (i--) triggers[i].kill();
+                ScrollSmoother_ScrollTrigger.scrollerProxy(wrapper);
+                ScrollSmoother_ScrollTrigger.removeEventListener("killAll", addOnRefresh);
+                ScrollSmoother_ScrollTrigger.removeEventListener("refresh", onRefresh);
+                wrapper.style.cssText = wrapperCSS;
+                content.style.cssText = contentCSS;
+                var defaults = ScrollSmoother_ScrollTrigger.defaults({});
+                defaults && defaults.scroller === wrapper && ScrollSmoother_ScrollTrigger.defaults({
+                    scroller: ScrollSmoother_win
+                });
+                _this.normalizer && ScrollSmoother_ScrollTrigger.normalizeScroll(false);
+                clearInterval(intervalID);
+                _mainInstance = null;
+                resizeObserver && resizeObserver.disconnect();
+                ScrollSmoother_body.style.removeProperty("height");
+                ScrollSmoother_win.removeEventListener("focusin", _onFocusIn);
+            };
+            this.refresh = function(soft, force) {
+                return mainST.refresh(soft, force);
+            };
+            if (normalizeScroll) this.normalizer = ScrollSmoother_ScrollTrigger.normalizeScroll(normalizeScroll === true ? {
+                debounce: true,
+                content: !smoothDuration && content
+            } : normalizeScroll);
+            ScrollSmoother_ScrollTrigger.config(vars);
+            "scrollBehavior" in ScrollSmoother_win.getComputedStyle(ScrollSmoother_body) && ScrollSmoother_gsap.set([ ScrollSmoother_body, ScrollSmoother_docEl ], {
+                scrollBehavior: "auto"
+            });
+            ScrollSmoother_win.addEventListener("focusin", _onFocusIn);
+            intervalID = setInterval(updateVelocity, 250);
+            ScrollSmoother_doc.readyState === "loading" || requestAnimationFrame((function() {
+                return ScrollSmoother_ScrollTrigger.refresh();
             }));
         }
-        checkNestedScroll(node, {deltaX, deltaY}) {
-            const time = Date.now();
-            const cache = node._lenis ??= {};
-            let hasOverflowX, hasOverflowY, isScrollableX, isScrollableY, scrollWidth, scrollHeight, clientWidth, clientHeight;
-            const gestureOrientation = this.options.gestureOrientation;
-            if (time - (cache.time ?? 0) > 2e3) {
-                cache.time = Date.now();
-                const computedStyle = window.getComputedStyle(node);
-                cache.computedStyle = computedStyle;
-                const overflowXString = computedStyle.overflowX;
-                const overflowYString = computedStyle.overflowY;
-                hasOverflowX = [ "auto", "overlay", "scroll" ].includes(overflowXString);
-                hasOverflowY = [ "auto", "overlay", "scroll" ].includes(overflowYString);
-                cache.hasOverflowX = hasOverflowX;
-                cache.hasOverflowY = hasOverflowY;
-                if (!hasOverflowX && !hasOverflowY) return false;
-                if (gestureOrientation === "vertical" && !hasOverflowY) return false;
-                if (gestureOrientation === "horizontal" && !hasOverflowX) return false;
-                scrollWidth = node.scrollWidth;
-                scrollHeight = node.scrollHeight;
-                clientWidth = node.clientWidth;
-                clientHeight = node.clientHeight;
-                isScrollableX = scrollWidth > clientWidth;
-                isScrollableY = scrollHeight > clientHeight;
-                cache.isScrollableX = isScrollableX;
-                cache.isScrollableY = isScrollableY;
-                cache.scrollWidth = scrollWidth;
-                cache.scrollHeight = scrollHeight;
-                cache.clientWidth = clientWidth;
-                cache.clientHeight = clientHeight;
-            } else {
-                isScrollableX = cache.isScrollableX;
-                isScrollableY = cache.isScrollableY;
-                hasOverflowX = cache.hasOverflowX;
-                hasOverflowY = cache.hasOverflowY;
-                scrollWidth = cache.scrollWidth;
-                scrollHeight = cache.scrollHeight;
-                clientWidth = cache.clientWidth;
-                clientHeight = cache.clientHeight;
+        ScrollSmoother.register = function register(core) {
+            if (!ScrollSmoother_coreInitted) {
+                ScrollSmoother_gsap = core || ScrollSmoother_getGSAP();
+                if (ScrollSmoother_windowExists() && window.document) {
+                    ScrollSmoother_win = window;
+                    ScrollSmoother_doc = document;
+                    ScrollSmoother_docEl = ScrollSmoother_doc.documentElement;
+                    ScrollSmoother_body = ScrollSmoother_doc.body;
+                }
+                if (ScrollSmoother_gsap) {
+                    ScrollSmoother_toArray = ScrollSmoother_gsap.utils.toArray;
+                    ScrollSmoother_clamp = ScrollSmoother_gsap.utils.clamp;
+                    _expo = ScrollSmoother_gsap.parseEase("expo");
+                    ScrollSmoother_context = ScrollSmoother_gsap.core.context || function() {};
+                    ScrollSmoother_ScrollTrigger = ScrollSmoother_gsap.core.globals().ScrollTrigger;
+                    ScrollSmoother_gsap.core.globals("ScrollSmoother", ScrollSmoother);
+                    if (ScrollSmoother_body && ScrollSmoother_ScrollTrigger) {
+                        _onResizeDelayedCall = ScrollSmoother_gsap.delayedCall(.2, (function() {
+                            return ScrollSmoother_ScrollTrigger.isRefreshing || _mainInstance && _mainInstance.refresh();
+                        })).pause();
+                        0;
+                        ScrollSmoother_getVelocityProp = ScrollSmoother_ScrollTrigger.core._getVelocityProp;
+                        ScrollSmoother_inputObserver = ScrollSmoother_ScrollTrigger.core._inputObserver;
+                        ScrollSmoother.refresh = ScrollSmoother_ScrollTrigger.refresh;
+                        ScrollSmoother_coreInitted = 1;
+                    }
+                }
             }
-            if (!hasOverflowX && !hasOverflowY || !isScrollableX && !isScrollableY) return false;
-            if (gestureOrientation === "vertical" && (!hasOverflowY || !isScrollableY)) return false;
-            if (gestureOrientation === "horizontal" && (!hasOverflowX || !isScrollableX)) return false;
-            let orientation;
-            if (gestureOrientation === "horizontal") orientation = "x"; else if (gestureOrientation === "vertical") orientation = "y"; else {
-                const isScrollingX = deltaX !== 0;
-                const isScrollingY = deltaY !== 0;
-                if (isScrollingX && hasOverflowX && isScrollableX) orientation = "x";
-                if (isScrollingY && hasOverflowY && isScrollableY) orientation = "y";
+            return ScrollSmoother_coreInitted;
+        };
+        ScrollSmoother_createClass(ScrollSmoother, [ {
+            key: "progress",
+            get: function get() {
+                return this.scrollTrigger ? this.scrollTrigger.animation._time / 100 : 0;
             }
-            if (!orientation) return false;
-            let scroll, maxScroll, delta, hasOverflow, isScrollable;
-            if (orientation === "x") {
-                scroll = node.scrollLeft;
-                maxScroll = scrollWidth - clientWidth;
-                delta = deltaX;
-                hasOverflow = hasOverflowX;
-                isScrollable = isScrollableX;
-            } else if (orientation === "y") {
-                scroll = node.scrollTop;
-                maxScroll = scrollHeight - clientHeight;
-                delta = deltaY;
-                hasOverflow = hasOverflowY;
-                isScrollable = isScrollableY;
-            } else return false;
-            const willScroll = delta > 0 ? scroll < maxScroll : scroll > 0;
-            return willScroll && hasOverflow && isScrollable;
-        }
-        get rootElement() {
-            return this.options.wrapper === window ? document.documentElement : this.options.wrapper;
-        }
-        get limit() {
-            if (this.options.__experimental__naiveDimensions) if (this.isHorizontal) return this.rootElement.scrollWidth - this.rootElement.clientWidth; else return this.rootElement.scrollHeight - this.rootElement.clientHeight; else return this.dimensions.limit[this.isHorizontal ? "x" : "y"];
-        }
-        get isHorizontal() {
-            return this.options.orientation === "horizontal";
-        }
-        get actualScroll() {
-            const wrapper = this.options.wrapper;
-            return this.isHorizontal ? wrapper.scrollX ?? wrapper.scrollLeft : wrapper.scrollY ?? wrapper.scrollTop;
-        }
-        get scroll() {
-            return this.options.infinite ? modulo(this.animatedScroll, this.limit) : this.animatedScroll;
-        }
-        get progress() {
-            return this.limit === 0 ? 1 : this.scroll / this.limit;
-        }
-        get isScrolling() {
-            return this._isScrolling;
-        }
-        set isScrolling(value) {
-            if (this._isScrolling !== value) {
-                this._isScrolling = value;
-                this.updateClassName();
-            }
-        }
-        get isStopped() {
-            return this._isStopped;
-        }
-        set isStopped(value) {
-            if (this._isStopped !== value) {
-                this._isStopped = value;
-                this.updateClassName();
-            }
-        }
-        get isLocked() {
-            return this._isLocked;
-        }
-        set isLocked(value) {
-            if (this._isLocked !== value) {
-                this._isLocked = value;
-                this.updateClassName();
-            }
-        }
-        get isSmooth() {
-            return this.isScrolling === "smooth";
-        }
-        get className() {
-            let className = "lenis";
-            if (this.options.autoToggle) className += " lenis-autoToggle";
-            if (this.isStopped) className += " lenis-stopped";
-            if (this.isLocked) className += " lenis-locked";
-            if (this.isScrolling) className += " lenis-scrolling";
-            if (this.isScrolling === "smooth") className += " lenis-smooth";
-            return className;
-        }
-        updateClassName() {
-            this.cleanUpClassName();
-            this.rootElement.className = `${this.rootElement.className} ${this.className}`.trim();
-        }
-        cleanUpClassName() {
-            this.rootElement.className = this.rootElement.className.replace(/lenis(-\w+)?/g, "").trim();
-        }
+        } ]);
+        return ScrollSmoother;
+    }();
+    ScrollSmoother.version = "3.13.0";
+    ScrollSmoother.create = function(vars) {
+        return _mainInstance && vars && _mainInstance.content() === ScrollSmoother_toArray(vars.content)[0] ? _mainInstance : new ScrollSmoother(vars);
     };
-    gsapWithCSS.registerPlugin(ScrollTrigger_ScrollTrigger);
+    ScrollSmoother.get = function() {
+        return _mainInstance;
+    };
+    ScrollSmoother_getGSAP() && ScrollSmoother_gsap.registerPlugin(ScrollSmoother);
+    gsapWithCSS.registerPlugin(ScrollTrigger_ScrollTrigger, ScrollSmoother);
     window.addEventListener("load", (function(e) {
-        const lenis = new Lenis({
-            autoRaf: false
+        bodyUnlock();
+        setTimeout((() => {
+            gsapWithCSS.to("#loader", {
+                opacity: 0,
+                duration: .5,
+                onComplete: function() {
+                    document.getElementById("loader").style.display = "none";
+                }
+            });
+        }), 500);
+        ScrollSmoother.create({
+            smooth: 1,
+            effects: true
         });
-        ScrollTrigger_ScrollTrigger.scrollerProxy(document.body, {
-            scrollTop(value) {
-                if (arguments.length) lenis.scrollTo(value, {
-                    immediate: true
-                });
-                return lenis.animatedScroll;
-            },
-            getBoundingClientRect() {
-                return {
-                    top: 0,
-                    left: 0,
-                    width: window.innerWidth,
-                    height: window.innerHeight
-                };
-            }
-        });
-        lenis.on("scroll", ScrollTrigger_ScrollTrigger.update);
-        gsapWithCSS.ticker.add((time => {
-            lenis.raf(time * 1e3);
-        }));
-        gsapWithCSS.ticker.lagSmoothing(0);
         let heroAnim = gsapWithCSS.matchMedia();
         heroAnim.add("(min-width: 701px)", (() => {
             gsapWithCSS.to(".hero-animation", {
