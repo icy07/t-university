@@ -10261,6 +10261,7 @@
             gsapWithCSS.to("#loader", {
                 opacity: 0,
                 duration: .5,
+                ease: "none",
                 onComplete: function() {
                     document.getElementById("loader").style.display = "none";
                 }
