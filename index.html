@@ -5,7 +5,7 @@
 	<title>Главная</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20250602152442">
+	<link rel="stylesheet" href="css/style.min.css?_v=20250614175517">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -13,7 +13,8 @@
 	<div id="loader" aria-hidden="true" class="fixed top-0 left-0 w-full h-full bg-purple flex-center z-40">
 		<img src="img/star.svg" alt="loader" class="w-40 pointer-events-none animate-spin">
 	</div>
-	<div class="pointer-events-none">
+
+	<div class="pointer-events-none cursor-main">
 		<div class="hidden fixed top-0 left-0 mix-blend-difference z-50 transition-all duration-[450ms] ease-out cursor__ball--big cursor">
 			<svg height="30" width="30">
 				<circle cx="15" cy="15" r="12" stroke-width="0" fill="#f7f8fa"></circle>
@@ -26,41 +27,44 @@
 			</svg>
 		</div>
 	</div>
+
 	<div id="smooth-wrapper">
 		<div id="smooth-content">
-			<div class="wrapper">
+			<div class="wrapper gscrollbar-fixer">
 				<header class="header py-3.5 xl:py-5 relative">
 					<div class="container">
-						<div class="flex items-center justify-between max-[860px]:justify-end gap-2.5 menu">
-							<a href="index.html" class="max-[860px]:mr-auto">
-								<img class="max-w-40 lg:max-w-full xl:w-72" src="img/logo.svg" alt="Т-УНИВЕРСИТЕТ">
+						<div class="flex items-center justify-between max-[890px]:justify-end gap-2.5 menu">
+							<a href="index.html" class="max-[890px]:mr-auto flex items-center gap-2 2xlgap-4">
+								<img src="img/95.svg" alt="95 лет ДГТУ" class="max-w-6 min-[1100px]:max-w-full 2xl:w-12">
+								<div class="h-[20px] min-[1100px]:h-[27px] 2xl:h-[34px] w-[1px] bg-white"></div>
+								<img class="max-w-40 min-[1100px]:max-w-full 2xl:w-72" src="img/logo.svg" alt="Т-УНИВЕРСИТЕТ">
 							</a>
-							<div class="h-0 w-0 bg-purple rounded-full absolute top-[30px] right-[30px] z-[4] origin-center transition-all ease-[cubic-bezier(0.86,0,0.07,1)] duration-[750ms] [.menu-open_&]:w-[2000px] [.menu-open_&]:h-[2000px] [.menu-open_&]:-top-[1000px] [.menu-open_&]:-right-[1000px] min-[860px]:hidden">
+							<div class="h-0 w-0 bg-purple rounded-full absolute top-[30px] right-[30px] z-[4] origin-center transition-all ease-[cubic-bezier(0.86,0,0.07,1)] duration-[750ms] [.menu-open_&]:w-[2500px] [.menu-open_&]:h-[2500px] [.menu-open_&]:-top-[1000px] [.menu-open_&]:-right-[1000px] min-[890px]:hidden">
 							</div>
-							<nav class="menu__body relative z-[5] overflow-auto max-[860px]:absolute max-[860px]:top-0 max-[860px]:-right-full max-[860px]:[.menu-open_&]:right-0 max-[860px]:w-full max-[860px]:h-svh max-[860px]:delay-[750ms] max-[860px]:[.menu-open_&]:delay-[0ms] max-[860px]:flex max-[860px]:flex-col max-[860px]:justify-between max-[860px]:pb-4">
-								<ul class="flex items-center max-[860px]:flex-col max-[860px]:items-end max-[860px]:pt-16 max-[860px]:pr-4 gap-6 min-[860px]:gap-1.5 md:gap-6 min-[1100px]:gap-12! text-white font-manrope text-3xl min-[860px]:text-xs lg:text-sm xl:text-lg 2xl:text-2xl header-ul">
-									<li class="max-[860px]:mobileMenuList max-[860px]:delay-[250ms] max-[860px]:[.menu-open_&]:delay-[0ms]">
+							<nav class="menu__body relative z-[5] overflow-auto max-[890px]:absolute max-[890px]:top-0 max-[890px]:-right-full max-[890px]:[.menu-open_&]:right-0 max-[890px]:w-full max-[890px]:h-svh max-[890px]:delay-[750ms] max-[890px]:[.menu-open_&]:delay-[0ms] max-[890px]:flex max-[890px]:flex-col max-[890px]:justify-between max-[890px]:pb-4">
+								<ul class="flex items-center max-[890px]:flex-col max-[890px]:items-end max-[890px]:pt-16 max-[890px]:pr-4 gap-6 min-[890px]:gap-1.5 md:gap-4 min-[1300px]:gap-12! text-white font-manrope text-3xl min-[890px]:text-xs lg:text-sm min-[1300px]:text-lg! min-[1600px]:text-2xl! header-ul">
+									<li class="max-[890px]:mobileMenuList max-[890px]:delay-[250ms] max-[890px]:[.menu-open_&]:delay-[0ms]">
 										<a href='#' data-goto='#courses'>Направления</a>
 									</li>
-									<li class="max-[860px]:mobileMenuList max-[860px]:delay-[200ms] max-[860px]:[.menu-open_&]:delay-[50ms]">
+									<li class="max-[890px]:mobileMenuList max-[890px]:delay-[200ms] max-[890px]:[.menu-open_&]:delay-[50ms]">
 										<a href='#' data-goto='#events'>Мероприятия</a>
 									</li>
-									<li class="max-[860px]:mobileMenuList max-[860px]:delay-[150ms] max-[860px]:[.menu-open_&]:delay-[100ms]">
+									<li class="max-[890px]:mobileMenuList max-[890px]:delay-[150ms] max-[890px]:[.menu-open_&]:delay-[100ms]">
 										<a href='#' data-goto='#questions'>Вопрос-ответ</a>
 									</li>
-									<li class="max-[860px]:mobileMenuList max-[860px]:delay-[100ms] max-[860px]:[.menu-open_&]:delay-[150ms]">
+									<li class="max-[890px]:mobileMenuList max-[890px]:delay-[100ms] max-[890px]:[.menu-open_&]:delay-[150ms]">
 										<a href='#' data-goto='#footer'>Контакты</a>
 									</li>
 								</ul>
 							</nav>
 							<div class="max-[578px]:mobileMenuList max-[578px]:delay-[50ms] max-[578px]:[.menu-open_&]:delay-[200ms] flex gap-2.5 items-center font-manrope text-xs lg:text-sm 2xl:text-lg  max-[578px]:flex-col max-[578px]:items-end max-[578px]:mt-6 max-[578px]:pr-4" data-da=".menu__body, 577, last">
-								<a href="tel:88632381769" class="text-white rounded-[100px] border border-gray py-2 px-4 lg:py-2.5 lg:px-6 transition duration-100 max-[578px]:bg-white max-[578px]:border-white max-[578px]:text-purple max-[578px]:text-xl max-[578px]:py-1 max-[578px]:font-bold">
+								<a href="tel:88632381769" class="font-medium text-white rounded-[100px] border border-gray py-2 px-4 lg:py-2.5 lg:px-6 transition duration-100 max-[578px]:bg-white max-[578px]:border-white max-[578px]:text-purple max-[578px]:text-xl max-[578px]:py-1 max-[578px]:font-bold">
 									8 (863) 238-17-69
 								</a>
-								<a href="#" class="max-[578px]:mobileMenuList max-[578px]:delay-[0ms] max-[578px]:[.menu-open_&]:delay-[250ms] purple-btn max-[578px]:bg-white max-[578px]:border-white max-[578px]:text-purple max-[578px]:text-xl max-[578px]:py-1 max-[578px]:font-bold">Связаться
+								<a href="#" class="font-medium max-[578px]:mobileMenuList max-[578px]:delay-[0ms] max-[578px]:[.menu-open_&]:delay-[250ms] purple-btn max-[578px]:bg-white max-[578px]:border-white max-[578px]:text-purple max-[578px]:text-xl max-[578px]:py-1 max-[578px]:font-bold">Связаться
 									с нами</a>
 							</div>
-							<button type="button" class="menu__icon icon-menu block min-[860px]:hidden relative w-7 h-4 cursor-pointer relative z-[5]
+							<button type="button" class="menu__icon icon-menu block min-[890px]:hidden relative w-7 h-4 cursor-pointer relative z-[5]
 			before:transition-all before:duration-300 before:right-0 before:top-0 before:absolute before:w-full before:h-0.5 before:bg-white [.menu-open_&]:before:top-[calc(50%-1px)] [.menu-open_&]:before:-rotate-45
 			after:transition-all after:duration-300 after:right-0 after:bottom-0 after:absolute after:w-full after:h-0.5 after:bg-white [.menu-open_&]:after:bottom-[calc(50%-1px)] [.menu-open_&]:after:rotate-45
 			">
@@ -70,251 +74,317 @@
 					</div>
 				</header>
 				<main>
-					<section class="mt-5 pb-16 relative hero">
+					<section class="mt-12 pb-16 relative hero">
 						<img src="img/star.svg" alt="Звезда" class="-z-10 absolute -top-16 -left-16 xl:-top-40  xl:-left-40 animate-spin xl:w-6xl max-[701px]:hidden">
 						<div class="container">
 							<div class="mb-5 min-[701px]:mb-7 pointer-events-none flex justify-center">
-								<img src="img/hero-text.svg" alt="ВЫБОР ЗА ТОБОЙ" class="hidden min-[701px]:block">
+								<img src="img/hero-text.svg" alt="ВЫБОР ЗА ТОБОЙ" class="w-full hidden min-[701px]:block">
 								<img src="img/hero-text-mobile.svg" alt="ВЫБОР ЗА ТОБОЙ" class="block min-[701px]:hidden">
 							</div>
-							<div class="flex max-[701px]:flex-col max-[701px]:items-center items-start gap-10 hero-animation">
-								<div class="min-[701px]:text-sm lg:text-base xl:text-2xl max-[701px]:text-center shrink-0 grow-0 text-white font-manrope flex flex-col gap-6 max-w-[265px] xl:max-w-[430px] tracking-tight">
-									<p>
-										В Т-университете мы готовим студента
-										не к рабочему месту, а&nbsp;к&nbsp;деятельности в разных условиях и&nbsp;в&nbsp;разных
-										сферах
-									</p>
-									<p>
-										Мы развиваем у него
-										способность принимать
-										решения и продуктивно действовать в любых ситуациях
-									</p>
-								</div>
-								<div class="max-[701px]:overflow-hidden max-[701px]:w-full hero__slider">
-									<div class="hero__swiper min-[701px]:flex min-[701px]:items-start min-[701px]:gap-3.5 hero-images">
-										<div class="hero__slide shrink-0">
-											<picture><source srcset="img/hero/1.webp" type="image/webp"><img src="img/hero/1.png" alt="Студенты Т-Университета"></picture>
-										</div>
-										<div class="hero__slide shrink-0">
-											<picture><source srcset="img/hero/2.webp" type="image/webp"><img src="img/hero/2.png" alt="Студенты Т-Университета"></picture>
-										</div>
-										<div class="hero__slide shrink-0">
-											<picture><source srcset="img/hero/3.webp" type="image/webp"><img src="img/hero/3.png" alt="Студенты Т-Университета"></picture>
-										</div>
-										<div class="hero__slide shrink-0">
-											<picture><source srcset="img/hero/4.webp" type="image/webp"><img src="img/hero/4.jpg" alt="Студенты Т-Университета"></picture>
-										</div>
+							<div class="hero__slider max-[701px]:overflow-hidden max-[701px]:w-full hero-animation">
+								<div class="hero__swiper">
+									<div class="hero__slide min-[701px]:rotate-[3.8deg]">
+										<picture><source srcset="img/hero/1.webp" type="image/webp"><img src="img/hero/1.png" alt="Image"></picture>
 									</div>
-									<div class="hero__pagination pagination min-[701px]:hidden"></div>
+									<div class="hero__slide min-[701px]:-rotate-[5.16deg] min-[701px]:translate-y-12">
+										<picture><source srcset="img/hero/2.webp" type="image/webp"><img src="img/hero/2.png" alt="Image"></picture>
+									</div>
+									<div class="hero__slide min-[701px]:rotate-[1.8deg]">
+										<picture><source srcset="img/hero/3.webp" type="image/webp"><img src="img/hero/3.png" alt="Image"></picture>
+									</div>
+									<div class="hero__slide min-[701px]:-rotate-[4.18deg] min-[701px]:translate-y-12">
+										<picture><source srcset="img/hero/4.webp" type="image/webp"><img src="img/hero/4.jpg" alt="Image"></picture>
+									</div>
+									<div class="hero__slide min-[701px]:rotate-[5.23deg]">
+										<picture><source srcset="img/hero/1.webp" type="image/webp"><img src="img/hero/1.png" alt="Image"></picture>
+									</div>
 								</div>
 							</div>
+							<div class="hero__pagination pagination min-[701px]:hidden"></div>
+							<p class="hero-text text-center mt-5 min-[701px]:mt-24 xl:mt-32 font-manrope font-medium text-sm sm:text-base xl:text-xl">
+								Готовим студента не к рабочему месту, а к деятельности <br> в разных условиях и в разных сферах
+							</p>
 						</div>
 					</section>
-					<section class="bg-white text-primary rounded-[44px] mt-3 md:mt-7 lg:mt-14 py-10 relative
+					<section id="about" class="bg-white text-primary rounded-[44px] pt-10 sm:pt-16 pb-10 relative
 			before:absolute before:w-full before:h-10 before:bottom-0 before:left-0 before:bg-purple before:z-[-1]">
 						<div class="container flex flex-col items-center">
-							<h2 class="title">ЧТО ЭТО ТАКОЕ?</h2>
-							<div class="flex flex-col gap-3.5 text-center max-w-[690px] text-sm md:text-base lg:text-xl font-manrope">
-								<p>
-									Ты устал от устаревших учебных программ, где теория не имеет ничего общего с реальной жизнью?
-									<span class="text-purple">
-										Тогда
-										тебе к нам в
-										Т-Университет
-									</span> – место, где образование выходит за рамки стандартных лекций и скучных конспектов.
-									Здесь
-									ты учишься <span class="text-purple">
-										не
-										для диплома, а для карьеры!
-									</span>
-								</p>
+							<h2 class="text-2xl/6 sm:text-4xl/8 md:text-5xl/10 lg:text-7xl/16 font-extrabold flex flex-col items-center min-[450px]:items-start">
+								<span>ЧТО ТАКОЕ</span>
+								<span class="min-[450px]:self-end min-[450px]:ml-12 md:ml-16 lg:ml-24">Т — УНИВЕРСИТЕТ?</span>
+							</h2>
+							<div class="mt-8 flex flex-col gap-3.5 sm:max-w-[390px] md:max-w-[530px] lg:max-w-[780px] text-sm md:text-base lg:text-xl font-semibold text-center sm:text-left sm:pl-12 md:pl-16 lg:pl-24">
 								<p>
 									Это новая модель образования, которая делает из тебя не просто специалиста, а универсального
 									профессионала. Ты
-									развиваешь <span class="text-purple">креативность, критическое мышление, коммуникационные
-										навыки
-										и
-										учишься работать в команде</span>,
-									получаешь глубокие
+									развиваешь <span class="text-purple">
+										креативность, критическое мышление, коммуникационные навыки и учишься работать в
+										команде
+									</span>, получаешь глубокие
 									знания в твоей профессиональной сфере, которые делают тебя сильным специалистом!
 								</p>
 								<p>
-									Но главное – здесь ты не просто сидишь на лекциях. Т-Университет – это <span class="text-purple">
-										практика, реальные проекты и
-										работа с
+									Но главное – здесь ты не просто сидишь на лекциях. Т — Университет – это <span class="text-purple">
+										практика, реальные
+										проекты и работа с
 										индустриальными партнерами
 									</span> уже во время учебы!
 								</p>
 							</div>
 							<div class="w-full mt-10 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-								<div class="border border-primary rounded-2xl md:rounded-4xl max-md:pt-2 px-[18px] pb-3">
-									<p class="font-queen text-6xl md:text-8xl lg:text-9xl">
+								<div class="border border-primary rounded-2xl md:rounded-4xl max-md:pt-2 px-4 py-3">
+									<p class="font-extrabold text-5xl md:text-6xl min-[1380px]:text-8xl!">
 										<span class="number-animation">95</span>%
 									</p>
-									<p class="text-sm md:text-base">
+									<p class="mt-2.5 font-semibold text-sm md:text-base min-[1380px]:text-lg!">
 										уровень трудоустройства выпускников спустя полгода после окончания университета
 									</p>
 								</div>
-								<div class="border border-primary rounded-2xl md:rounded-4xl max-md:pt-2 px-[18px] pb-3">
-									<p class="font-queen text-6xl md:text-8xl lg:text-9xl">
+								<div class="border border-primary rounded-2xl md:rounded-4xl max-md:pt-2 px-4 py-3">
+									<p class="font-extrabold text-5xl md:text-6xl min-[1380px]:text-8xl!">
 										<span class="number-animation">1800</span>+
 									</p>
-									<p class="text-sm md:text-base">
+									<p class="mt-2.5 font-semibold text-sm md:text-base min-[1380px]:text-lg!">
 										выпускников основных образовательных программ
 									</p>
 								</div>
-								<div class="border border-primary rounded-2xl md:rounded-4xl max-md:pt-2 px-[18px] pb-3">
-									<p class="font-queen text-6xl md:text-8xl lg:text-9xl">
+								<div class="border border-primary rounded-2xl md:rounded-4xl max-md:pt-2 px-4 py-3">
+									<p class="font-extrabold text-5xl md:text-6xl min-[1380px]:text-8xl!">
 										<span class="number-animation">700</span>+
 									</p>
-									<p class="text-sm md:text-base">
+									<p class="mt-2.5 font-semibold text-sm md:text-base min-[1380px]:text-lg!">
 										уроуровень трудоустройства выпускников спустя полгода после окончания университета
 									</p>
 								</div>
-								<div class="border border-primary rounded-2xl md:rounded-4xl max-md:pt-2 px-[18px] pb-3">
-									<p class="font-queen text-6xl md:text-8xl lg:text-9xl">
+								<div class="border border-primary rounded-2xl md:rounded-4xl max-md:pt-2 px-4 py-3">
+									<p class="font-extrabold text-5xl md:text-6xl min-[1380px]:text-8xl!">
 										<span class="number-animation">100</span>+
 									</p>
-									<p class="text-sm md:text-base">
-										преподавателей и исследователей
+									<p class="mt-2.5 font-semibold text-sm md:text-base min-[1380px]:text-lg!">
+										преподавателей и&nbsp;исследователей
 									</p>
 								</div>
 							</div>
 							<a href="#" class="purple-btn mt-5 self-stretch text-center py-4">Читать подробнее</a>
 						</div>
 					</section>
-					<section id="courses" class="bg-purple pt-5 md:pt-10 pb-6 md:pb-14 rounded-b-[44px]">
-						<div class="container flex flex-col">
-							<h2 class="title self-center">Направления</h2>
-							<div data-showmore="items" data-showmore-media="469,max">
-								<div data-showmore-content="8" class="mt-3 grid gap-5 grid-cols-1 min-[470px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pb-5">
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+					<section id="courses" class="bg-purple pt-8 md:pt-16 pb-6 md:pb-14 rounded-b-[44px] relative overflow-hidden">
+						<img src="img/star-purple.svg" alt="Звезда" class=" absolute top-1/2 -left-16 xl:top-1/2 -translate-y-1/2 xl:-left-40 animate-spin xl:w-6xl max-[701px]:hidden">
+						<div class="container flex flex-col relative z-[1]">
+							<h2 class="title self-center">НАШИ НАПРАВЛЕНИЯ</h2>
+							<div class="grid grid-cols-[1fr_3fr] gap-5 items-start mt-8">
+								<div class="bg-white text-primary rounded-4xl px-5 pb-5 flex flex-col">
+									<div data-spollers data-spollers-speed class="filter-spoller mb-5">
+										<div class="filter-item">
+											<button type="button" data-spoller class="filter-btn link-alike">
+												Уровень образования
+												<div>
+													<img src="img/arrow.svg" alt="arrow">
+												</div>
+											</button>
+											<div class="pb-5">
+												<div class="checkbox flex flex-col gap-1.5">
+													<label class="checkbox__label link-alike">
+														<input data-error="" class="checkbox__input" type="checkbox" value="1" name="form[]">
+														<span class="checkbox__text">
+															Бакалавриат
+														</span>
+													</label>
+													<label class="checkbox__label link-alike">
+														<input data-error="" class="checkbox__input" type="checkbox" value="1" name="form[]">
+														<span class="checkbox__text">
+															Магистратура
+														</span>
+													</label>
+												</div>
+											</div>
 										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											Машинное обучение и искусственный интеллект
-										</p>
-									</a>
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+										<div class="filter-item">
+											<button type="button" data-spoller class="filter-btn link-alike">
+												Экзамены для поступления
+												<div>
+													<img src="img/arrow.svg" alt="arrow">
+												</div>
+											</button>
+											<div>Контент спойлера</div>
 										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											Интерактивные медиа и дизайн
-										</p>
-									</a>
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
+										<div class="filter-item">
+											<button type="button" data-spoller class="filter-btn link-alike">
+												Направление подготовки
+												<div>
+													<img src="img/arrow.svg" alt="arrow">
+												</div>
+											</button>
+											<div>Контент спойлера</div>
 										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											Перевод, логистика и межкультурная коммуникация
-										</p>
-									</a>
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
-										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											Международный бизнес
-										</p>
-									</a>
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
-										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											Цифровое городское планирование и управление недвижимостью
-										</p>
-									</a>
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
-										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											Разработка игр и прикладных программ
-										</p>
-									</a>
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
-										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											Транспортная инженерия
-										</p>
-									</a>
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
-										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											Интеллектуальные транспортные системы
-										</p>
-									</a>
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
-										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											Цифровое гражданское строительство
-										</p>
-									</a>
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
-										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											Налоги и бизнес в цифровой экономике
-										</p>
-									</a>
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
-										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											Беспилотные системы и технологии
-										</p>
-									</a>
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
-										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											Управление цифровой трансформацией
-										</p>
-									</a>
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
-										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											Технологии Индустрии 4.0 и управление инновационными проектами
-										</p>
-									</a>
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
-										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											Приборостроение
-										</p>
-									</a>
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
-										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											Веб-разработка
-										</p>
-									</a>
-									<a href="course.html" class="flex flex-col justify-between p-7 rounded-4xl bg-white text-primary transition-all duration-150 hover:text-purple hover:[&_div]:bg-purple hover:scale-[1.05]">
-										<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary mb-3.5 sm:mb-5 md:mb-8 lg:mb-22 min-[1400px]:mb-40! transition-all duration-150">
-										</div>
-										<p class="font-queen text-3xl md:text-4xl transition-all duration-150">
-											IT-специалист для бизнеса
-										</p>
-									</a>
+									</div>
+									<button class="link-alike text-center text-purple font-semibold xl:text-xl">Сбросить</button>
 								</div>
-								<button data-showmore-button type="button" class="block__more text-purple font-bold bg-white rounded-[100px] py-4 w-full flex justify-center">
-									<span>Показать еще</span>
-									<span>Скрыть</span>
-								</button>
+								<div data-showmore="items" class="flex flex-col items-center">
+									<div data-showmore-content="3" class="grid gap-5 grid-cols-1 min-[470px]:grid-cols-2 md:grid-cols-3">
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>бакалавриат</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												Машинное обучение и искусственный интеллект
+											</p>
+										</a>
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>бакалавриат</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												Интерактивные медиа и дизайн
+											</p>
+										</a>
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>бакалавриат</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												Перевод, ЛИНГВИСТИКА и межкультурная коммуникация
+											</p>
+										</a>
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>Магистратура</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												Международный бизнес
+											</p>
+										</a>
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>бакалавриат</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												Цифровое городское планирование и управление недвижимостью
+											</p>
+										</a>
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>Магистратура</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												Разработка игр и прикладных программ
+											</p>
+										</a>
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>бакалавриат</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												Транспортная инженерия
+											</p>
+										</a>
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>бакалавриат</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												Интеллектуальные транспортные системы
+											</p>
+										</a>
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>бакалавриат</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												Цифровое гражданское строительство
+											</p>
+										</a>
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>бакалавриат</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												Налоги и бизнес в цифровой экономике
+											</p>
+										</a>
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>Магистратура</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												Беспилотные системы и технологии
+											</p>
+										</a>
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>бакалавриат</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												Управление цифровой трансформацией
+											</p>
+										</a>
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>бакалавриат</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												Технологии Индустрии 4.0 и управление инновационными проектами
+											</p>
+										</a>
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>бакалавриат</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												Приборостроение
+											</p>
+										</a>
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>Магистратура</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												Веб-разработка
+											</p>
+										</a>
+										<a href="course.html" class="course-card">
+											<div class="course-info">
+												<p>бакалавриат</p>
+												<p>08.03.01</p>
+											</div>
+											<p class="course-title">
+												IT-специалист для бизнеса
+											</p>
+										</a>
+									</div>
+									<button data-showmore-button type="button" class="mt-5 block__more link-alike text-purple font-bold bg-white rounded-[100px] py-4 w-[calc(33.333%-10px)] flex justify-center">
+										<span>Показать еще</span>
+										<span>Скрыть</span>
+									</button>
+								</div>
 							</div>
 						</div>
 					</section>
-					<section id="events" class="mt-10 min-[400px]:mt-14 pb-10 relative">
-						<img src="img/star.svg" alt="Звезда" class="-z-10 absolute -top-16 -left-16 xl:-top-40  xl:-left-40 animate-spin xl:w-5xl max-[701px]:hidden">
+					<section id="events" class="mt-10 min-[400px]:mt-14 pb-20 relative">
+						<img src="img/star.svg" alt="Звезда" class="-z-10 absolute top-52 -left-16 xl:top-40  xl:-left-40 animate-spin xl:w-5xl max-[701px]:hidden">
 						<div class="container events">
-							<h2 class="font-queen text-5xl/[85%] min-[400px]:text-6xl/[80%] min-[500px]:text-8xl/[75%] md:text-9xl/[75%] lg:text-[180px]/[75%] xl:text-[250px]/[75%] flex flex-col items-center min-[400px]:items-start">
-								<span>приходи на наши</span>
-								<span class="text-purple min-[400px]:self-end">мероприятия</span>
-							</h2>
+							<div class="flex flex-col items-center">
+								<h2 class="max-w-[950px] mx-auto uppercase text-center text-3xl/8 sm:text-4xl/8 md:text-5xl/10 lg:text-7xl/16 font-extrabold flex flex-col items-center min-[450px]:items-start text-white">
+									<span>приходи на</span>
+									<span class="min-[450px]:self-end min-[450px]:ml-14 md:ml-20 lg:ml-32 text-purple">наши
+										мероприятия</span>
+								</h2>
+							</div>
 							<div class="events__slider mt-5 md:mt-10 relative">
 								<div class="events__swiper">
 									<div class="events__slide slide-card">
@@ -323,14 +393,12 @@
 											<p>Пл. Гагарина 1, корпус №8, аудитория 8-433</p>
 										</div>
 										<p class="card-title">
-											День Т. Образовательный интенсив. Один день из
-											обучения студента Т—университета
+											День Т. Образовательный интенсив. <br> Один день из
+											обучения студента <br> Т — университета
 										</p>
 										<p class="card-text">
 											Ты проживешь один день, как студент Т—университета: увидишь, что значит современный
-											подход
-											в
-											обучении, поучаствуешь в
+											подход в обучении, поучаствуешь в
 											проектной деятельности и сможешь понять, почему наш институт подходит именно тебе.
 										</p>
 										<a href="#" class="card-btn">Зарегистрироваться</a>
@@ -357,13 +425,12 @@
 											<p>Пл. Гагарина 1, корпус №8, аудитория 8-433</p>
 										</div>
 										<p class="card-title">
-											День Т. Образовательный интенсив. Один день из обучения студента Т—университета
+											День Т. Образовательный интенсив. <br> Один день из
+											обучения студента <br> Т — университета
 										</p>
 										<p class="card-text">
 											Ты проживешь один день, как студент Т—университета: увидишь, что значит современный
-											подход
-											в
-											обучении, поучаствуешь в
+											подход в обучении, поучаствуешь в
 											проектной деятельности и сможешь понять, почему наш институт подходит именно тебе.
 										</p>
 										<a href="#" class="card-btn">Зарегистрироваться</a>
@@ -385,10 +452,10 @@
 										<a href="#" class="card-btn">Зарегистрироваться</a>
 									</div>
 								</div>
-								<div class="hidden md:flex gap-1 absolute left-0 -top-16 lg:-top-[94px]">
-									<button class="link-alike hover:bg-green duration-500 w-10 h-10 lg:w-[54px] lg:h-[54px] rounded-full bg-white flex-center before:text-primary before:text-xl lg:before:text-2xl before:rotate-180 events__nav-prev _icon-arrow">
+								<div class="hidden md:flex gap-1 absolute left-0 xl:left-auto xl:right-0 -top-16 xl:-top-[94px]">
+									<button class="link-alike hover:bg-green duration-500 w-10 h-10 xl:w-[54px] xl:h-[54px] rounded-full bg-white flex-center before:text-primary before:text-xl xl:before:text-2xl before:rotate-180 events__nav-prev _icon-arrow">
 									</button>
-									<button class="link-alike hover:bg-green duration-500 w-10 h-10 lg:w-[54px] lg:h-[54px] rounded-full bg-white flex-center before:text-primary before:text-xl lg:before:text-2xl events__nav-next _icon-arrow">
+									<button class="link-alike hover:bg-green duration-500 w-10 h-10 xl:w-[54px] xl:h-[54px] rounded-full bg-white flex-center before:text-primary before:text-xl xl:before:text-2xl events__nav-next _icon-arrow">
 									</button>
 								</div>
 								<div class="events__pagination pagination md:hidden"></div>
@@ -397,28 +464,65 @@
 					</section>
 					<section class="mb-10 min-[701px]:mb-28 images-animation">
 						<div class="container flex flex-col items-center">
-							<h2 class="title">у нас не скучно</h2>
-							<div class="img-animation__slider max-[701px]:overflow-hidden max-[701px]:w-full">
-								<div class="img-animation__swiper img-container">
-									<div class="img-animation__slide">
-										<picture><source srcset="img/animation/1.webp" type="image/webp"><img src="img/animation/1.png" alt="Студенты Т-Университета"></picture>
-									</div>
-									<div class="img-animation__slide">
-										<picture><source srcset="img/animation/2.webp" type="image/webp"><img src="img/animation/2.png" alt="Студенты Т-Университета"></picture>
-									</div>
-									<div class="img-animation__slide">
-										<picture><source srcset="img/animation/3.webp" type="image/webp"><img src="img/animation/3.png" alt="Студенты Т-Университета"></picture>
-									</div>
+							<h2 class="title">фотогалерея</h2>
+							<div data-showmore="items" class="mt-8 w-full flex flex-col items-center">
+								<div data-showmore-content="2" class="w-full flex flex-wrap [&_a]:w-[calc(50%-10px)] sm:[&_a]:w-[calc(50%-20px)] md:[&_a]:w-[calc(33.333%-20px)] lg:[&_a]:w-[calc(25%-20px)] gap-2.5 sm:gap-5">
+									<a href="img/hero/1.png" class="gallery-img">
+										<div class="arrow-hover__arrow">
+											<div class="arrow-hover__arrow-blur"></div>
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+												<path fill="white" d="M486 192.012c-90.46 6.911-170.129 47.324-226.271 114.777-67.434 81.022-90.562 194.483-60.571 297.142 35.398 121.164 138.377 209.571 267.12 229.321 21.129 3.242 72.7 3.212 93.161-.054 74.916-11.957 138.619-44.721 188.796-97.103 150.267-156.872 106.911-413.729-86.18-510.567-52.702-26.432-114.583-38.212-176.055-33.516m1.5 11.625c-1.65.186-7.725.836-13.5 1.444C306.463 222.733 184.947 370.012 198.906 538.5c14.921 180.099 180.723 309.667 361.439 282.45C695.269 800.63 801.433 695.126 822.927 560c25.18-158.295-75.488-309.753-231.267-347.951-29.933-7.34-78.7-11.278-104.16-8.412m95.53 153.333c-2.905 2.905-2.631 7.412.605 9.957 2.549 2.005 3.75 2.073 36.778 2.073h34.142l-58.277 58.276c-62.529 62.526-60.7 60.375-56.205 66.089 4.962 6.309 2.805 8.109 66.608-55.58L665 379.571v67.284l2.635 2.072c3.148 2.477 5.161 2.605 8.142.516l2.223-1.556v-86.775l-2.413-2.806-2.412-2.806-44.058-.28c-43.133-.274-44.099-.238-46.087 1.75M486.5 538.977c-1.1.467-28.663 27.568-61.25 60.222L366 658.572v-37.286c0-35.953-.072-37.358-2-39.286-2.398-2.398-5.746-2.567-8.777-.443L353 583.113v90.041l2.923 2.923 2.923 2.923h45.006c49.784 0 48.148.217 48.148-6.38 0-7.4 1.36-7.158-38.17-6.798l-35.33.321 58.75-58.841c64.361-64.461 62.488-62.217 56.115-67.229-2.853-2.244-3.806-2.396-6.865-1.096" fill-rule="evenodd" />
+											</svg>
+										</div>
+										<picture><source srcset="img/hero/1.webp" type="image/webp"><img src="img/hero/1.png" alt="Image"></picture>
+									</a>
+									<a href="img/hero/2.png" class="gallery-img">
+										<picture><source srcset="img/hero/2.webp" type="image/webp"><img src="img/hero/2.png" alt="Image"></picture>
+									</a>
+									<a href="img/hero/3.png" class="gallery-img">
+										<picture><source srcset="img/hero/3.webp" type="image/webp"><img src="img/hero/3.png" alt="Image"></picture>
+									</a>
+									<a href="img/hero/4.jpg" class="gallery-img">
+										<picture><source srcset="img/hero/4.webp" type="image/webp"><img src="img/hero/4.jpg" alt="Image"></picture>
+									</a>
+									<a href="img/hero/1.png" class="gallery-img">
+										<picture><source srcset="img/hero/1.webp" type="image/webp"><img src="img/hero/1.png" alt="Image"></picture>
+									</a>
+									<a href="img/hero/2.png" class="gallery-img">
+										<picture><source srcset="img/hero/2.webp" type="image/webp"><img src="img/hero/2.png" alt="Image"></picture>
+									</a>
+									<a href="img/hero/3.png" class="gallery-img">
+										<picture><source srcset="img/hero/3.webp" type="image/webp"><img src="img/hero/3.png" alt="Image"></picture>
+									</a>
+									<a href="img/hero/4.jpg" class="gallery-img">
+										<picture><source srcset="img/hero/4.webp" type="image/webp"><img src="img/hero/4.jpg" alt="Image"></picture>
+									</a>
+									<a href="img/hero/1.png" class="gallery-img">
+										<picture><source srcset="img/hero/1.webp" type="image/webp"><img src="img/hero/1.png" alt="Image"></picture>
+									</a>
+									<a href="img/hero/2.png" class="gallery-img">
+										<picture><source srcset="img/hero/2.webp" type="image/webp"><img src="img/hero/2.png" alt="Image"></picture>
+									</a>
+									<a href="img/hero/3.png" class="gallery-img">
+										<picture><source srcset="img/hero/3.webp" type="image/webp"><img src="img/hero/3.png" alt="Image"></picture>
+									</a>
+									<a href="img/hero/4.jpg" class="gallery-img">
+										<picture><source srcset="img/hero/4.webp" type="image/webp"><img src="img/hero/4.jpg" alt="Image"></picture>
+									</a>
 								</div>
-								<div class="img-animation__pagination pagination min-[701px]:hidden"></div>
+								<button data-showmore-button class="purple-btn link-alike mt-5 md:py-4 px-6 md:px-[90px]" type="button">
+									<span>Показать еще</span>
+									<span>Скрыть</span>
+								</button>
 							</div>
 						</div>
 					</section>
-					<section class="bg-purple rounded-4xl py-10 md:py-20">
-						<div class="container">
-							<h2 class="font-queen text-5xl/[95%] min-[400px]:text-6xl/[95%] min-[600px]:text-8xl/[95%] min-[780px]:text-9xl/[95%]! min-[1100px]:text-[180px]/[95%]! 2xl:text-[250px]/[90%]! flex flex-col items-center min-[400px]:items-start">
-								<span class="text-primary">как будет проходить</span>
-								<span class="min-[400px]:self-end">твоё обучение</span>
+					<section id="direction" class="bg-purple rounded-4xl py-10 md:py-20">
+						<div class="container flex flex-col items-center">
+							<h2 class="mx-auto uppercase text-center text-3xl/8 sm:text-4xl/8 md:text-5xl/10 lg:text-7xl/16 font-extrabold flex flex-col items-center min-[450px]:items-start text-white">
+								<span>как будет проходить</span>
+								<span class="min-[450px]:self-end min-[450px]:ml-40 md:ml-64 lg:ml-96 text-primary">твое
+									обучение</span>
 							</h2>
 							<div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
 								<div class="trajectory-card">
@@ -439,13 +543,8 @@
 									</div>
 									<p class="trajectory-text">
 										Здесь ты приобретёшь углубленные знания и навыки в рамках выбранной тобой в конце первого
-										курса
-										области и готовится к
-										обучению в мейджоре. <br>
-										На выбор будет шесть ОНТ: <br>
-										- Естественные и точные науки <br>
-										- Медицинские науки и общественное здравоохранение <br>
-										- Техника и технологии. И так далее
+										курса области и готовится к
+										обучению в мейджоре. На выбор будет шесть областей
 									</p>
 								</div>
 								<div class="trajectory-card">
@@ -455,13 +554,8 @@
 									</div>
 									<p class="trajectory-text">
 										Часть образовательной программы, где ты получишь профессиональные компетенции и навыки,
-										обучаясь
-										в профильных
-										образовательных модулях, и познакомишься с потенциальными работодателями.
-										Ты сможешь выбрать мейджор в конце второго курса, обучение в нем занимает 3 и 4 годы
-										обучения, а
-										после успешного
-										окончания получишь диплом государственного образца степени бакалавра.
+										обучаясь в профильных
+										образовательных модулях, и познакомишься с потенциальными работодателями
 									</p>
 								</div>
 								<div class="trajectory-card">
@@ -472,27 +566,26 @@
 									<p class="trajectory-text">
 										Место для твоего осознанного и свободного выбора, где ты сам решаешь какие из предложенных
 										учебных модулей ты будешь
-										изучать.
-										В рамках элективного блока ты можешь как углублять имеющиеся знания и компетенции, так и
-										приобретать абсолютно новые,
-										выбирая элективные модули в течение всех четырех лет.
+										изучать
 									</p>
 								</div>
 							</div>
-							<a href="#" class="purple-btn mt-5 self-stretch text-center py-4 bg-primary hidden md:block">Читать
+							<a href="#" class="purple-btn font-semibold mt-5 self-stretch text-center py-4 bg-white text-primary hidden md:block">Читать
 								подробнее об
 								образовательной траектории</a>
-							<a href="#" class="purple-btn mt-5 self-stretch text-center py-4 bg-primary block md:hidden">Читать
+							<a href="#" class="purple-btn font-semibold mt-5 self-stretch text-center py-4 bg-white text-primary block md:hidden">Читать
 								подробнее</a>
 						</div>
 					</section>
 					<section class="relative pb-8 pt-10 md:pt-20" id="questions">
 						<img src="img/star.svg" alt="Звезда" class="-z-10 absolute -top-16 -left-16 xl:-top-10 xl:-left-10 xl:w-3xl animate-spin max-[701px]:hidden">
 						<div class="container flex flex-col items-center">
-							<h2 class="text-center font-queen text-5xl min-[400px]:text-6xl min-[600px]:text-8xl min-[780px]:text-9xl! min-[1100px]:text-[180px]! 2xl:text-[250px]!">
-								вопрос-ответ
+							<h2 class="max-w-[950px] mx-auto uppercase text-center text-3xl/8 sm:text-4xl/8 md:text-5xl/10 lg:text-7xl/16 font-extrabold flex flex-col items-center min-[450px]:items-start text-white">
+								<span>ответы на</span>
+								<span class="min-[450px]:self-end min-[450px]:ml-14 md:ml-20 lg:ml-32 text-purple">твои
+									вопросы</span>
 							</h2>
-							<div data-spollers data-one-spoller class="spollers max-w-[630px] xl:max-w-[840px] w-full mt-6 md:mt-10">
+							<div data-spollers data-one-spoller class="spollers">
 								<div class="spollers__item">
 									<button type="button" data-spoller class="spollers__title link-alike">
 										Как мне разобраться, что выбрать?
@@ -591,50 +684,47 @@
 						</a>
 						<div class="mt-5 grid gap-x-2.5 gap-y-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
 							<ul class="flex flex-col max-sm:flex-wrap max-sm:max-h-[100px] items-start gap-2 sm:gap-2.5">
-								<li><a href="#">О Т-университете</a></li>
-								<li><a href="#">Образование</a></li>
-								<li><a href="#">Направления</a></li>
-								<li><a href="#">Мероприятия</a></li>
-								<li><a href="#">Вопрос-ответ</a></li>
+								<li><a href='#' data-goto='#about'>О Т — университете</a></li>
+								<li><a href='#' data-goto='#direction'>Образование</a></li>
+								<li><a href='#' data-goto='#courses'>Направления</a></li>
+								<li><a href='#' data-goto='#events'>Мероприятия</a></li>
+								<li><a href='#' data-goto='#questions'>Вопрос-ответ</a></li>
 							</ul>
 							<ul class="flex flex-col items-start gap-2 sm:gap-2.5">
-								<li><a href="#" class="_icon-tg flex items-center gap-2">Написать в Telegram</a></li>
+								<li><a href="https://vk.com/t.donstu" target="_blank" class="_icon-vk flex items-center gap-2">Перейти во
+										Вконтакте</a></li>
 								<li><a href="#" class="_icon-wa flex items-center gap-2">Написать в WhatsApp</a></li>
 								<li><a href="mailto:iot@gs.donstu.ru" class="_icon-mail flex items-center gap-2">iot@gs.donstu.ru</a></li>
 								<li><a href="tel:88632738648" class="_icon-phone flex items-center gap-2">8 (863) 273-86-48</a></li>
 								<li><a href="tel:88632381769" class="_icon-phone flex items-center gap-2">8 (863) 238-17-69</a></li>
 							</ul>
 							<div class="flex flex-col items-center text-center sm:text-left sm:items-start justify-between gap-2">
-								<div>
-									<p>Мы в соцсетях:</p>
-									<div class="flex items-center gap-1.5 mt-2">
-										<a href="#" class="hover:bg-green duration-500 flex-center w-12 h-12 sm:w-10 sm:h-10 rounded-full border border-gray">
-											<i class="_icon-tg"></i>
-										</a>
-										<a href="#" class="hover:bg-green duration-500 flex-center w-12 h-12 sm:w-10 sm:h-10 rounded-full border border-gray">
-											<i class="_icon-vk"></i>
-										</a>
-										<a href="#" class="hover:bg-green duration-500 flex-center w-12 h-12 sm:w-10 sm:h-10 rounded-full border border-gray">
-											<i class="_icon-yt"></i>
-										</a>
-									</div>
-								</div>
-								<a href="#" class="text-[#838383] hover:underline hidden sm:block">
-									Политика конфиденциальности
-								</a>
-							</div>
-							<div class="flex flex-col items-center text-center sm:text-left sm:items-start justify-between gap-2">
-								<div class="flex flex-col items-start gap-2 sm:gap-2.5">
+								<div class="flex flex-col items-center sm:items-start gap-2 sm:gap-2.5">
 									<p>Время работы тех поддержки</p>
 									<p class="text-[#838383]">Пн-Вс 07:00 -- 19:00 (по мск)</p>
+									<a href="https://yandex.ru/maps/org/donskoy_gosudarstvenny_tekhnicheskiy_universitet/100522677108/?ll=39.712281%2C47.237272&mode=search&sctx=ZAAAAAgBEAAaKAoSCWhaYmU03ENAEZ%2BUSQ1tnEdAEhIJj3IwmwDD3j8Rx9XIrrSMyD8iBgABAgMEBSgKOABAi80GSAFqAnJ1nQHNzMw9oAEAqAEAvQH3hBFqwgE22ufx74sB9Kb5vPYC9Om91QTJ0PaABpbJr%2FLQAabxjoYF%2Ftz2xwTi%2F%2B%2BSBcPCz4fbAuONlf8GggII0LTQs9GC0YOKAgCSAgCaAgxkZXNrdG9wLW1hcHOqAgk4MjU2MTUyMjSwAgE%3D&sll=39.712281%2C47.237272&sspn=0.001211%2C0.000666&text=дгту&z=20.17" target="_blank" class="text-[#838383] transition-all duration-150 hover:text-purple">пл. Гагарина 1,
+										ауд. 454/455</a>
+									<a href="#" target="_blank" class="hidden sm:inline-block text-[#838383] transition-all duration-150 hover:text-purple">Политика
+										конфиденциальности</a>
+									<p class="hidden sm:inline-block text-[#838383]">
+										© 2025. Все права защищены
+									</p>
 								</div>
-								<p class="text-[#838383] hidden sm:block">
-									© 2025. Все права защищены
-								</p>
+							</div>
+							<div class="flex flex-col items-center text-center sm:text-left sm:items-start justify-between gap-2">
+								<div class="flex flex-col items-center sm:items-start gap-2 sm:gap-2.5">
+									<p>Сайт сделали:</p>
+									<a href="https://t.me/ppixelzip" target="_blank" class="text-[#838383] transition-all duration-150 hover:text-purple">
+										Дизайн: Хонявко Руслан Владимирович
+									</a>
+									<a href="https://t.me/adreyil" target="_blank" class="text-[#838383] transition-all duration-150 hover:text-purple">
+										Вёрстка: Ильин Андрей Александрович
+									</a>
+								</div>
 							</div>
 						</div>
 						<div class="flex sm:hidden flex-col items-center gap-2.5 mt-10">
-							<a href="#" class="text-[#838383] hover:underline">
+							<a href="#" class="text-[#838383] transition-all duration-150 hover:text-purple">
 								Политика конфиденциальности
 							</a>
 							<p class="text-[#838383]">
@@ -649,19 +739,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- 
-<div id="popup" aria-hidden="true" class="popup">
-	<div class="popup__wrapper">
-		<div class="popup__content">
-			<button data-close type="button" class="popup__close">Закрыть</button>
-			<div class="popup__text">
-			</div>
-		</div>
-	</div>
-</div>
- -->
-
-	<script src="js/app.min.js?_v=20250602152442"></script>
+	<script src="js/app.min.js?_v=20250614175517"></script>
 </body>
 
 </html>
