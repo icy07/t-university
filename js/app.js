@@ -1930,11 +1930,22 @@
                 function initItem(showMoreBlock, matchMedia = false) {
                     showMoreBlock = matchMedia ? showMoreBlock.item : showMoreBlock;
                     let showMoreContent = showMoreBlock.querySelectorAll("[data-showmore-content]");
+                    let showMoreWrapper = showMoreBlock.querySelectorAll("[data-showmore-wrapper]");
                     let showMoreButton = showMoreBlock.querySelectorAll("[data-showmore-button]");
                     showMoreContent = Array.from(showMoreContent).filter((item => item.closest("[data-showmore]") === showMoreBlock))[0];
+                    showMoreWrapper = Array.from(showMoreWrapper).filter((item => item.closest("[data-showmore]") === showMoreBlock))[0];
                     showMoreButton = Array.from(showMoreButton).filter((item => item.closest("[data-showmore]") === showMoreBlock))[0];
                     const hiddenHeight = getHeight(showMoreBlock, showMoreContent);
-                    if (matchMedia.matches || !matchMedia) if (hiddenHeight < getOriginalHeight(showMoreContent)) {
+                    if (showMoreWrapper) if (matchMedia.matches || !matchMedia) if (hiddenHeight < getOriginalHeight(showMoreContent)) {
+                        _slideUp(showMoreWrapper, 0, hiddenHeight);
+                        showMoreButton.hidden = false;
+                    } else {
+                        _slideDown(showMoreWrapper, 0, hiddenHeight);
+                        showMoreButton.hidden = true;
+                    } else {
+                        _slideDown(showMoreWrapper, 0, hiddenHeight);
+                        showMoreButton.hidden = true;
+                    } else if (matchMedia.matches || !matchMedia) if (hiddenHeight < getOriginalHeight(showMoreContent)) {
                         _slideUp(showMoreContent, 0, hiddenHeight);
                         showMoreButton.hidden = false;
                     } else {
@@ -1957,7 +1968,7 @@
                             if (index == showMoreTypeValue) break;
                         } else for (let index = 1; index < showMoreItems.length; index++) {
                             const showMoreItem = showMoreItems[index - 1];
-                            hiddenHeight += showMoreItem.offsetHeight + 5;
+                            hiddenHeight += showMoreItem.offsetHeight + 7;
                             if (index == showMoreTypeValue) break;
                         }
                     } else {
@@ -1987,9 +1998,15 @@
                             const showMoreButton = targetEvent.closest("[data-showmore-button]");
                             const showMoreBlock = showMoreButton.closest("[data-showmore]");
                             const showMoreContent = showMoreBlock.querySelector("[data-showmore-content]");
+                            const showMoreWrapper = showMoreBlock.querySelector("[data-showmore-wrapper]");
                             const showMoreSpeed = showMoreBlock.dataset.showmoreButton ? showMoreBlock.dataset.showmoreButton : "500";
                             const hiddenHeight = getHeight(showMoreBlock, showMoreContent);
-                            if (!showMoreContent.classList.contains("_slide")) {
+                            if (showMoreWrapper) {
+                                if (!showMoreWrapper.classList.contains("_slide")) {
+                                    showMoreBlock.classList.contains("_showmore-active") ? _slideUp(showMoreWrapper, showMoreSpeed, hiddenHeight) : _slideDown(showMoreWrapper, showMoreSpeed, hiddenHeight);
+                                    showMoreBlock.classList.toggle("_showmore-active");
+                                }
+                            } else if (!showMoreContent.classList.contains("_slide")) {
                                 showMoreBlock.classList.contains("_showmore-active") ? _slideUp(showMoreContent, showMoreSpeed, hiddenHeight) : _slideDown(showMoreContent, showMoreSpeed, hiddenHeight);
                                 showMoreBlock.classList.toggle("_showmore-active");
                             }
@@ -5746,7 +5763,28 @@
                 if (smallBall) smallBall.style.transform = `translate(${x - 5}px, ${y - 7}px)`;
             }));
         }
-        glightbox_min({
+        //!======================================================================================================
+                const galleryItems = document.querySelectorAll(".gallery-img");
+        if (galleryItems) galleryItems.forEach((item => {
+            const arrow = item.querySelector(".arrow-hover__arrow");
+            if (arrow) {
+                item.addEventListener("mouseenter", (() => {
+                    arrow.classList.add("active");
+                }));
+                item.addEventListener("mouseleave", (() => {
+                    arrow.classList.remove("active");
+                }));
+                item.addEventListener("mousemove", (e => {
+                    const rect = item.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    arrow.style.left = `${x}px`;
+                    arrow.style.top = `${y}px`;
+                }));
+            }
+        }));
+        //!======================================================================================================
+                glightbox_min({
             selector: ".gallery-img"
         });
         function _assertThisInitialized(self) {

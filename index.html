@@ -5,7 +5,7 @@
 	<title>Главная</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20250614175517">
+	<link rel="stylesheet" href="css/style.min.css?_v=20250621151721">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -15,13 +15,13 @@
 	</div>
 
 	<div class="pointer-events-none cursor-main">
-		<div class="hidden fixed top-0 left-0 mix-blend-difference z-50 transition-all duration-[450ms] ease-out cursor__ball--big cursor">
+		<div class="hidden fixed top-0 left-0 mix-blend-difference z-[9999999] transition-all duration-[450ms] ease-out cursor__ball--big cursor">
 			<svg height="30" width="30">
 				<circle cx="15" cy="15" r="12" stroke-width="0" fill="#f7f8fa"></circle>
 			</svg>
 		</div>
 
-		<div class="hidden fixed top-0 left-0 mix-blend-difference z-50 transition-all duration-100 ease-out cursor__ball--small cursor">
+		<div class="hidden fixed top-0 left-0 mix-blend-difference z-[9999999] transition-all duration-100 ease-out cursor__ball--small cursor">
 			<svg height="10" width="10">
 				<circle cx="5" cy="5" r="4" stroke-width="0" fill="#f7f8fa"></circle>
 			</svg>
@@ -169,12 +169,12 @@
 						</div>
 					</section>
 					<section id="courses" class="bg-purple pt-8 md:pt-16 pb-6 md:pb-14 rounded-b-[44px] relative overflow-hidden">
-						<img src="img/star-purple.svg" alt="Звезда" class=" absolute top-1/2 -left-16 xl:top-1/2 -translate-y-1/2 xl:-left-40 animate-spin xl:w-6xl max-[701px]:hidden">
+						<img src="img/star-purple.svg" alt="Звезда" class=" absolute top-80 -left-16 xl:top-[650px] -translate-y-1/2 xl:-left-40 animate-spin xl:w-6xl max-[701px]:hidden">
 						<div class="container flex flex-col relative z-[1]">
 							<h2 class="title self-center">НАШИ НАПРАВЛЕНИЯ</h2>
-							<div class="grid grid-cols-[1fr_3fr] gap-5 items-start mt-8">
-								<div class="bg-white text-primary rounded-4xl px-5 pb-5 flex flex-col">
-									<div data-spollers data-spollers-speed class="filter-spoller mb-5">
+							<div class="grid min-[800px]:grid-cols-[1.5fr_3fr] lg:grid-cols-[1fr_3fr] gap-5 items-start mt-8">
+								<div class="bg-white text-primary rounded-4xl px-5 pb-4 sm:pb-5 flex flex-col">
+									<div data-spollers data-spollers-speed class="filter-spoller mb-4 sm:mb-5">
 										<div class="filter-item">
 											<button type="button" data-spoller class="filter-btn link-alike">
 												Уровень образования
@@ -218,156 +218,158 @@
 											<div>Контент спойлера</div>
 										</div>
 									</div>
-									<button class="link-alike text-center text-purple font-semibold xl:text-xl">Сбросить</button>
+									<button class="link-alike text-center text-purple font-semibold text-sm xl:text-base 2xl:text-lg">Сбросить</button>
 								</div>
 								<div data-showmore="items" class="flex flex-col items-center">
-									<div data-showmore-content="3" class="grid gap-5 grid-cols-1 min-[470px]:grid-cols-2 md:grid-cols-3">
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>бакалавриат</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												Машинное обучение и искусственный интеллект
-											</p>
-										</a>
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>бакалавриат</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												Интерактивные медиа и дизайн
-											</p>
-										</a>
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>бакалавриат</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												Перевод, ЛИНГВИСТИКА и межкультурная коммуникация
-											</p>
-										</a>
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>Магистратура</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												Международный бизнес
-											</p>
-										</a>
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>бакалавриат</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												Цифровое городское планирование и управление недвижимостью
-											</p>
-										</a>
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>Магистратура</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												Разработка игр и прикладных программ
-											</p>
-										</a>
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>бакалавриат</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												Транспортная инженерия
-											</p>
-										</a>
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>бакалавриат</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												Интеллектуальные транспортные системы
-											</p>
-										</a>
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>бакалавриат</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												Цифровое гражданское строительство
-											</p>
-										</a>
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>бакалавриат</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												Налоги и бизнес в цифровой экономике
-											</p>
-										</a>
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>Магистратура</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												Беспилотные системы и технологии
-											</p>
-										</a>
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>бакалавриат</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												Управление цифровой трансформацией
-											</p>
-										</a>
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>бакалавриат</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												Технологии Индустрии 4.0 и управление инновационными проектами
-											</p>
-										</a>
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>бакалавриат</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												Приборостроение
-											</p>
-										</a>
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>Магистратура</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												Веб-разработка
-											</p>
-										</a>
-										<a href="course.html" class="course-card">
-											<div class="course-info">
-												<p>бакалавриат</p>
-												<p>08.03.01</p>
-											</div>
-											<p class="course-title">
-												IT-специалист для бизнеса
-											</p>
-										</a>
+									<div data-showmore-wrapper class="w-full">
+										<div data-showmore-content="3" class="grid gap-2.5 sm:gap-5 grid-cols-1 min-[550px]:grid-cols-2 lg:grid-cols-3 auto-rows-[1fr]">
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>бакалавриат</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													Машинное обучение и искусственный интеллект
+												</p>
+											</a>
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>бакалавриат</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													Интерактивные медиа и дизайн
+												</p>
+											</a>
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>бакалавриат</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													Перевод, ЛИНГВИСТИКА и межкультурная коммуникация
+												</p>
+											</a>
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>Магистратура</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													Международный бизнес
+												</p>
+											</a>
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>бакалавриат</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													Цифровое городское планирование и управление недвижимостью
+												</p>
+											</a>
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>Магистратура</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													Разработка игр и прикладных программ
+												</p>
+											</a>
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>бакалавриат</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													Транспортная инженерия
+												</p>
+											</a>
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>бакалавриат</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													Интеллектуальные транспортные системы
+												</p>
+											</a>
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>бакалавриат</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													Цифровое гражданское строительство
+												</p>
+											</a>
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>бакалавриат</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													Налоги и бизнес в цифровой экономике
+												</p>
+											</a>
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>Магистратура</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													Беспилотные системы и технологии
+												</p>
+											</a>
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>бакалавриат</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													Управление цифровой трансформацией
+												</p>
+											</a>
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>бакалавриат</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													Технологии Индустрии 4.0 и управление инновационными проектами
+												</p>
+											</a>
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>бакалавриат</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													Приборостроение
+												</p>
+											</a>
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>Магистратура</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													Веб-разработка
+												</p>
+											</a>
+											<a href="course.html" class="course-card">
+												<div class="course-info">
+													<p>бакалавриат</p>
+													<p>08.03.01</p>
+												</div>
+												<p class="course-title">
+													IT-специалист для бизнеса
+												</p>
+											</a>
+										</div>
 									</div>
-									<button data-showmore-button type="button" class="mt-5 block__more link-alike text-purple font-bold bg-white rounded-[100px] py-4 w-[calc(33.333%-10px)] flex justify-center">
+									<button data-showmore-button type="button" class="mt-5 block__more link-alike text-purple font-bold bg-white rounded-[100px] py-4 max-sm:px-6 w-auto sm:w-[calc(33.333%-10px)] flex justify-center">
 										<span>Показать еще</span>
 										<span>Скрыть</span>
 									</button>
@@ -466,49 +468,117 @@
 						<div class="container flex flex-col items-center">
 							<h2 class="title">фотогалерея</h2>
 							<div data-showmore="items" class="mt-8 w-full flex flex-col items-center">
-								<div data-showmore-content="2" class="w-full flex flex-wrap [&_a]:w-[calc(50%-10px)] sm:[&_a]:w-[calc(50%-20px)] md:[&_a]:w-[calc(33.333%-20px)] lg:[&_a]:w-[calc(25%-20px)] gap-2.5 sm:gap-5">
-									<a href="img/hero/1.png" class="gallery-img">
-										<div class="arrow-hover__arrow">
-											<div class="arrow-hover__arrow-blur"></div>
-											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
-												<path fill="white" d="M486 192.012c-90.46 6.911-170.129 47.324-226.271 114.777-67.434 81.022-90.562 194.483-60.571 297.142 35.398 121.164 138.377 209.571 267.12 229.321 21.129 3.242 72.7 3.212 93.161-.054 74.916-11.957 138.619-44.721 188.796-97.103 150.267-156.872 106.911-413.729-86.18-510.567-52.702-26.432-114.583-38.212-176.055-33.516m1.5 11.625c-1.65.186-7.725.836-13.5 1.444C306.463 222.733 184.947 370.012 198.906 538.5c14.921 180.099 180.723 309.667 361.439 282.45C695.269 800.63 801.433 695.126 822.927 560c25.18-158.295-75.488-309.753-231.267-347.951-29.933-7.34-78.7-11.278-104.16-8.412m95.53 153.333c-2.905 2.905-2.631 7.412.605 9.957 2.549 2.005 3.75 2.073 36.778 2.073h34.142l-58.277 58.276c-62.529 62.526-60.7 60.375-56.205 66.089 4.962 6.309 2.805 8.109 66.608-55.58L665 379.571v67.284l2.635 2.072c3.148 2.477 5.161 2.605 8.142.516l2.223-1.556v-86.775l-2.413-2.806-2.412-2.806-44.058-.28c-43.133-.274-44.099-.238-46.087 1.75M486.5 538.977c-1.1.467-28.663 27.568-61.25 60.222L366 658.572v-37.286c0-35.953-.072-37.358-2-39.286-2.398-2.398-5.746-2.567-8.777-.443L353 583.113v90.041l2.923 2.923 2.923 2.923h45.006c49.784 0 48.148.217 48.148-6.38 0-7.4 1.36-7.158-38.17-6.798l-35.33.321 58.75-58.841c64.361-64.461 62.488-62.217 56.115-67.229-2.853-2.244-3.806-2.396-6.865-1.096" fill-rule="evenodd" />
-											</svg>
-										</div>
-										<picture><source srcset="img/hero/1.webp" type="image/webp"><img src="img/hero/1.png" alt="Image"></picture>
-									</a>
-									<a href="img/hero/2.png" class="gallery-img">
-										<picture><source srcset="img/hero/2.webp" type="image/webp"><img src="img/hero/2.png" alt="Image"></picture>
-									</a>
-									<a href="img/hero/3.png" class="gallery-img">
-										<picture><source srcset="img/hero/3.webp" type="image/webp"><img src="img/hero/3.png" alt="Image"></picture>
-									</a>
-									<a href="img/hero/4.jpg" class="gallery-img">
-										<picture><source srcset="img/hero/4.webp" type="image/webp"><img src="img/hero/4.jpg" alt="Image"></picture>
-									</a>
-									<a href="img/hero/1.png" class="gallery-img">
-										<picture><source srcset="img/hero/1.webp" type="image/webp"><img src="img/hero/1.png" alt="Image"></picture>
-									</a>
-									<a href="img/hero/2.png" class="gallery-img">
-										<picture><source srcset="img/hero/2.webp" type="image/webp"><img src="img/hero/2.png" alt="Image"></picture>
-									</a>
-									<a href="img/hero/3.png" class="gallery-img">
-										<picture><source srcset="img/hero/3.webp" type="image/webp"><img src="img/hero/3.png" alt="Image"></picture>
-									</a>
-									<a href="img/hero/4.jpg" class="gallery-img">
-										<picture><source srcset="img/hero/4.webp" type="image/webp"><img src="img/hero/4.jpg" alt="Image"></picture>
-									</a>
-									<a href="img/hero/1.png" class="gallery-img">
-										<picture><source srcset="img/hero/1.webp" type="image/webp"><img src="img/hero/1.png" alt="Image"></picture>
-									</a>
-									<a href="img/hero/2.png" class="gallery-img">
-										<picture><source srcset="img/hero/2.webp" type="image/webp"><img src="img/hero/2.png" alt="Image"></picture>
-									</a>
-									<a href="img/hero/3.png" class="gallery-img">
-										<picture><source srcset="img/hero/3.webp" type="image/webp"><img src="img/hero/3.png" alt="Image"></picture>
-									</a>
-									<a href="img/hero/4.jpg" class="gallery-img">
-										<picture><source srcset="img/hero/4.webp" type="image/webp"><img src="img/hero/4.jpg" alt="Image"></picture>
-									</a>
+								<div data-showmore-wrapper>
+									<div data-showmore-content="2" class="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-5">
+										<a href="img/hero/1.png" class="gallery-img">
+											<div class="arrow-hover__arrow">
+												<div class="arrow-hover__arrow-blur"></div>
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+													<path fill="white" d="M486 192.012c-90.46 6.911-170.129 47.324-226.271 114.777-67.434 81.022-90.562 194.483-60.571 297.142 35.398 121.164 138.377 209.571 267.12 229.321 21.129 3.242 72.7 3.212 93.161-.054 74.916-11.957 138.619-44.721 188.796-97.103 150.267-156.872 106.911-413.729-86.18-510.567-52.702-26.432-114.583-38.212-176.055-33.516m1.5 11.625c-1.65.186-7.725.836-13.5 1.444C306.463 222.733 184.947 370.012 198.906 538.5c14.921 180.099 180.723 309.667 361.439 282.45C695.269 800.63 801.433 695.126 822.927 560c25.18-158.295-75.488-309.753-231.267-347.951-29.933-7.34-78.7-11.278-104.16-8.412m95.53 153.333c-2.905 2.905-2.631 7.412.605 9.957 2.549 2.005 3.75 2.073 36.778 2.073h34.142l-58.277 58.276c-62.529 62.526-60.7 60.375-56.205 66.089 4.962 6.309 2.805 8.109 66.608-55.58L665 379.571v67.284l2.635 2.072c3.148 2.477 5.161 2.605 8.142.516l2.223-1.556v-86.775l-2.413-2.806-2.412-2.806-44.058-.28c-43.133-.274-44.099-.238-46.087 1.75M486.5 538.977c-1.1.467-28.663 27.568-61.25 60.222L366 658.572v-37.286c0-35.953-.072-37.358-2-39.286-2.398-2.398-5.746-2.567-8.777-.443L353 583.113v90.041l2.923 2.923 2.923 2.923h45.006c49.784 0 48.148.217 48.148-6.38 0-7.4 1.36-7.158-38.17-6.798l-35.33.321 58.75-58.841c64.361-64.461 62.488-62.217 56.115-67.229-2.853-2.244-3.806-2.396-6.865-1.096" fill-rule="evenodd" />
+												</svg>
+											</div>
+											<picture><source srcset="img/hero/1.webp" type="image/webp"><img src="img/hero/1.png" alt="Image"></picture>
+										</a>
+										<a href="img/hero/2.png" class="gallery-img">
+											<div class="arrow-hover__arrow">
+												<div class="arrow-hover__arrow-blur"></div>
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+													<path fill="white" d="M486 192.012c-90.46 6.911-170.129 47.324-226.271 114.777-67.434 81.022-90.562 194.483-60.571 297.142 35.398 121.164 138.377 209.571 267.12 229.321 21.129 3.242 72.7 3.212 93.161-.054 74.916-11.957 138.619-44.721 188.796-97.103 150.267-156.872 106.911-413.729-86.18-510.567-52.702-26.432-114.583-38.212-176.055-33.516m1.5 11.625c-1.65.186-7.725.836-13.5 1.444C306.463 222.733 184.947 370.012 198.906 538.5c14.921 180.099 180.723 309.667 361.439 282.45C695.269 800.63 801.433 695.126 822.927 560c25.18-158.295-75.488-309.753-231.267-347.951-29.933-7.34-78.7-11.278-104.16-8.412m95.53 153.333c-2.905 2.905-2.631 7.412.605 9.957 2.549 2.005 3.75 2.073 36.778 2.073h34.142l-58.277 58.276c-62.529 62.526-60.7 60.375-56.205 66.089 4.962 6.309 2.805 8.109 66.608-55.58L665 379.571v67.284l2.635 2.072c3.148 2.477 5.161 2.605 8.142.516l2.223-1.556v-86.775l-2.413-2.806-2.412-2.806-44.058-.28c-43.133-.274-44.099-.238-46.087 1.75M486.5 538.977c-1.1.467-28.663 27.568-61.25 60.222L366 658.572v-37.286c0-35.953-.072-37.358-2-39.286-2.398-2.398-5.746-2.567-8.777-.443L353 583.113v90.041l2.923 2.923 2.923 2.923h45.006c49.784 0 48.148.217 48.148-6.38 0-7.4 1.36-7.158-38.17-6.798l-35.33.321 58.75-58.841c64.361-64.461 62.488-62.217 56.115-67.229-2.853-2.244-3.806-2.396-6.865-1.096" fill-rule="evenodd" />
+												</svg>
+											</div>
+											<picture><source srcset="img/hero/2.webp" type="image/webp"><img src="img/hero/2.png" alt="Image"></picture>
+										</a>
+										<a href="img/hero/3.png" class="gallery-img">
+											<div class="arrow-hover__arrow">
+												<div class="arrow-hover__arrow-blur"></div>
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+													<path fill="white" d="M486 192.012c-90.46 6.911-170.129 47.324-226.271 114.777-67.434 81.022-90.562 194.483-60.571 297.142 35.398 121.164 138.377 209.571 267.12 229.321 21.129 3.242 72.7 3.212 93.161-.054 74.916-11.957 138.619-44.721 188.796-97.103 150.267-156.872 106.911-413.729-86.18-510.567-52.702-26.432-114.583-38.212-176.055-33.516m1.5 11.625c-1.65.186-7.725.836-13.5 1.444C306.463 222.733 184.947 370.012 198.906 538.5c14.921 180.099 180.723 309.667 361.439 282.45C695.269 800.63 801.433 695.126 822.927 560c25.18-158.295-75.488-309.753-231.267-347.951-29.933-7.34-78.7-11.278-104.16-8.412m95.53 153.333c-2.905 2.905-2.631 7.412.605 9.957 2.549 2.005 3.75 2.073 36.778 2.073h34.142l-58.277 58.276c-62.529 62.526-60.7 60.375-56.205 66.089 4.962 6.309 2.805 8.109 66.608-55.58L665 379.571v67.284l2.635 2.072c3.148 2.477 5.161 2.605 8.142.516l2.223-1.556v-86.775l-2.413-2.806-2.412-2.806-44.058-.28c-43.133-.274-44.099-.238-46.087 1.75M486.5 538.977c-1.1.467-28.663 27.568-61.25 60.222L366 658.572v-37.286c0-35.953-.072-37.358-2-39.286-2.398-2.398-5.746-2.567-8.777-.443L353 583.113v90.041l2.923 2.923 2.923 2.923h45.006c49.784 0 48.148.217 48.148-6.38 0-7.4 1.36-7.158-38.17-6.798l-35.33.321 58.75-58.841c64.361-64.461 62.488-62.217 56.115-67.229-2.853-2.244-3.806-2.396-6.865-1.096" fill-rule="evenodd" />
+												</svg>
+											</div>
+											<picture><source srcset="img/hero/3.webp" type="image/webp"><img src="img/hero/3.png" alt="Image"></picture>
+										</a>
+										<a href="img/hero/4.jpg" class="gallery-img">
+											<div class="arrow-hover__arrow">
+												<div class="arrow-hover__arrow-blur"></div>
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+													<path fill="white" d="M486 192.012c-90.46 6.911-170.129 47.324-226.271 114.777-67.434 81.022-90.562 194.483-60.571 297.142 35.398 121.164 138.377 209.571 267.12 229.321 21.129 3.242 72.7 3.212 93.161-.054 74.916-11.957 138.619-44.721 188.796-97.103 150.267-156.872 106.911-413.729-86.18-510.567-52.702-26.432-114.583-38.212-176.055-33.516m1.5 11.625c-1.65.186-7.725.836-13.5 1.444C306.463 222.733 184.947 370.012 198.906 538.5c14.921 180.099 180.723 309.667 361.439 282.45C695.269 800.63 801.433 695.126 822.927 560c25.18-158.295-75.488-309.753-231.267-347.951-29.933-7.34-78.7-11.278-104.16-8.412m95.53 153.333c-2.905 2.905-2.631 7.412.605 9.957 2.549 2.005 3.75 2.073 36.778 2.073h34.142l-58.277 58.276c-62.529 62.526-60.7 60.375-56.205 66.089 4.962 6.309 2.805 8.109 66.608-55.58L665 379.571v67.284l2.635 2.072c3.148 2.477 5.161 2.605 8.142.516l2.223-1.556v-86.775l-2.413-2.806-2.412-2.806-44.058-.28c-43.133-.274-44.099-.238-46.087 1.75M486.5 538.977c-1.1.467-28.663 27.568-61.25 60.222L366 658.572v-37.286c0-35.953-.072-37.358-2-39.286-2.398-2.398-5.746-2.567-8.777-.443L353 583.113v90.041l2.923 2.923 2.923 2.923h45.006c49.784 0 48.148.217 48.148-6.38 0-7.4 1.36-7.158-38.17-6.798l-35.33.321 58.75-58.841c64.361-64.461 62.488-62.217 56.115-67.229-2.853-2.244-3.806-2.396-6.865-1.096" fill-rule="evenodd" />
+												</svg>
+											</div>
+											<picture><source srcset="img/hero/4.webp" type="image/webp"><img src="img/hero/4.jpg" alt="Image"></picture>
+										</a>
+										<a href="img/hero/1.png" class="gallery-img">
+											<div class="arrow-hover__arrow">
+												<div class="arrow-hover__arrow-blur"></div>
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+													<path fill="white" d="M486 192.012c-90.46 6.911-170.129 47.324-226.271 114.777-67.434 81.022-90.562 194.483-60.571 297.142 35.398 121.164 138.377 209.571 267.12 229.321 21.129 3.242 72.7 3.212 93.161-.054 74.916-11.957 138.619-44.721 188.796-97.103 150.267-156.872 106.911-413.729-86.18-510.567-52.702-26.432-114.583-38.212-176.055-33.516m1.5 11.625c-1.65.186-7.725.836-13.5 1.444C306.463 222.733 184.947 370.012 198.906 538.5c14.921 180.099 180.723 309.667 361.439 282.45C695.269 800.63 801.433 695.126 822.927 560c25.18-158.295-75.488-309.753-231.267-347.951-29.933-7.34-78.7-11.278-104.16-8.412m95.53 153.333c-2.905 2.905-2.631 7.412.605 9.957 2.549 2.005 3.75 2.073 36.778 2.073h34.142l-58.277 58.276c-62.529 62.526-60.7 60.375-56.205 66.089 4.962 6.309 2.805 8.109 66.608-55.58L665 379.571v67.284l2.635 2.072c3.148 2.477 5.161 2.605 8.142.516l2.223-1.556v-86.775l-2.413-2.806-2.412-2.806-44.058-.28c-43.133-.274-44.099-.238-46.087 1.75M486.5 538.977c-1.1.467-28.663 27.568-61.25 60.222L366 658.572v-37.286c0-35.953-.072-37.358-2-39.286-2.398-2.398-5.746-2.567-8.777-.443L353 583.113v90.041l2.923 2.923 2.923 2.923h45.006c49.784 0 48.148.217 48.148-6.38 0-7.4 1.36-7.158-38.17-6.798l-35.33.321 58.75-58.841c64.361-64.461 62.488-62.217 56.115-67.229-2.853-2.244-3.806-2.396-6.865-1.096" fill-rule="evenodd" />
+												</svg>
+											</div>
+											<picture><source srcset="img/hero/1.webp" type="image/webp"><img src="img/hero/1.png" alt="Image"></picture>
+										</a>
+										<a href="img/hero/2.png" class="gallery-img">
+											<div class="arrow-hover__arrow">
+												<div class="arrow-hover__arrow-blur"></div>
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+													<path fill="white" d="M486 192.012c-90.46 6.911-170.129 47.324-226.271 114.777-67.434 81.022-90.562 194.483-60.571 297.142 35.398 121.164 138.377 209.571 267.12 229.321 21.129 3.242 72.7 3.212 93.161-.054 74.916-11.957 138.619-44.721 188.796-97.103 150.267-156.872 106.911-413.729-86.18-510.567-52.702-26.432-114.583-38.212-176.055-33.516m1.5 11.625c-1.65.186-7.725.836-13.5 1.444C306.463 222.733 184.947 370.012 198.906 538.5c14.921 180.099 180.723 309.667 361.439 282.45C695.269 800.63 801.433 695.126 822.927 560c25.18-158.295-75.488-309.753-231.267-347.951-29.933-7.34-78.7-11.278-104.16-8.412m95.53 153.333c-2.905 2.905-2.631 7.412.605 9.957 2.549 2.005 3.75 2.073 36.778 2.073h34.142l-58.277 58.276c-62.529 62.526-60.7 60.375-56.205 66.089 4.962 6.309 2.805 8.109 66.608-55.58L665 379.571v67.284l2.635 2.072c3.148 2.477 5.161 2.605 8.142.516l2.223-1.556v-86.775l-2.413-2.806-2.412-2.806-44.058-.28c-43.133-.274-44.099-.238-46.087 1.75M486.5 538.977c-1.1.467-28.663 27.568-61.25 60.222L366 658.572v-37.286c0-35.953-.072-37.358-2-39.286-2.398-2.398-5.746-2.567-8.777-.443L353 583.113v90.041l2.923 2.923 2.923 2.923h45.006c49.784 0 48.148.217 48.148-6.38 0-7.4 1.36-7.158-38.17-6.798l-35.33.321 58.75-58.841c64.361-64.461 62.488-62.217 56.115-67.229-2.853-2.244-3.806-2.396-6.865-1.096" fill-rule="evenodd" />
+												</svg>
+											</div>
+											<picture><source srcset="img/hero/2.webp" type="image/webp"><img src="img/hero/2.png" alt="Image"></picture>
+										</a>
+										<a href="img/hero/3.png" class="gallery-img">
+											<div class="arrow-hover__arrow">
+												<div class="arrow-hover__arrow-blur"></div>
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+													<path fill="white" d="M486 192.012c-90.46 6.911-170.129 47.324-226.271 114.777-67.434 81.022-90.562 194.483-60.571 297.142 35.398 121.164 138.377 209.571 267.12 229.321 21.129 3.242 72.7 3.212 93.161-.054 74.916-11.957 138.619-44.721 188.796-97.103 150.267-156.872 106.911-413.729-86.18-510.567-52.702-26.432-114.583-38.212-176.055-33.516m1.5 11.625c-1.65.186-7.725.836-13.5 1.444C306.463 222.733 184.947 370.012 198.906 538.5c14.921 180.099 180.723 309.667 361.439 282.45C695.269 800.63 801.433 695.126 822.927 560c25.18-158.295-75.488-309.753-231.267-347.951-29.933-7.34-78.7-11.278-104.16-8.412m95.53 153.333c-2.905 2.905-2.631 7.412.605 9.957 2.549 2.005 3.75 2.073 36.778 2.073h34.142l-58.277 58.276c-62.529 62.526-60.7 60.375-56.205 66.089 4.962 6.309 2.805 8.109 66.608-55.58L665 379.571v67.284l2.635 2.072c3.148 2.477 5.161 2.605 8.142.516l2.223-1.556v-86.775l-2.413-2.806-2.412-2.806-44.058-.28c-43.133-.274-44.099-.238-46.087 1.75M486.5 538.977c-1.1.467-28.663 27.568-61.25 60.222L366 658.572v-37.286c0-35.953-.072-37.358-2-39.286-2.398-2.398-5.746-2.567-8.777-.443L353 583.113v90.041l2.923 2.923 2.923 2.923h45.006c49.784 0 48.148.217 48.148-6.38 0-7.4 1.36-7.158-38.17-6.798l-35.33.321 58.75-58.841c64.361-64.461 62.488-62.217 56.115-67.229-2.853-2.244-3.806-2.396-6.865-1.096" fill-rule="evenodd" />
+												</svg>
+											</div>
+											<picture><source srcset="img/hero/3.webp" type="image/webp"><img src="img/hero/3.png" alt="Image"></picture>
+										</a>
+										<a href="img/hero/4.jpg" class="gallery-img">
+											<div class="arrow-hover__arrow">
+												<div class="arrow-hover__arrow-blur"></div>
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+													<path fill="white" d="M486 192.012c-90.46 6.911-170.129 47.324-226.271 114.777-67.434 81.022-90.562 194.483-60.571 297.142 35.398 121.164 138.377 209.571 267.12 229.321 21.129 3.242 72.7 3.212 93.161-.054 74.916-11.957 138.619-44.721 188.796-97.103 150.267-156.872 106.911-413.729-86.18-510.567-52.702-26.432-114.583-38.212-176.055-33.516m1.5 11.625c-1.65.186-7.725.836-13.5 1.444C306.463 222.733 184.947 370.012 198.906 538.5c14.921 180.099 180.723 309.667 361.439 282.45C695.269 800.63 801.433 695.126 822.927 560c25.18-158.295-75.488-309.753-231.267-347.951-29.933-7.34-78.7-11.278-104.16-8.412m95.53 153.333c-2.905 2.905-2.631 7.412.605 9.957 2.549 2.005 3.75 2.073 36.778 2.073h34.142l-58.277 58.276c-62.529 62.526-60.7 60.375-56.205 66.089 4.962 6.309 2.805 8.109 66.608-55.58L665 379.571v67.284l2.635 2.072c3.148 2.477 5.161 2.605 8.142.516l2.223-1.556v-86.775l-2.413-2.806-2.412-2.806-44.058-.28c-43.133-.274-44.099-.238-46.087 1.75M486.5 538.977c-1.1.467-28.663 27.568-61.25 60.222L366 658.572v-37.286c0-35.953-.072-37.358-2-39.286-2.398-2.398-5.746-2.567-8.777-.443L353 583.113v90.041l2.923 2.923 2.923 2.923h45.006c49.784 0 48.148.217 48.148-6.38 0-7.4 1.36-7.158-38.17-6.798l-35.33.321 58.75-58.841c64.361-64.461 62.488-62.217 56.115-67.229-2.853-2.244-3.806-2.396-6.865-1.096" fill-rule="evenodd" />
+												</svg>
+											</div>
+											<picture><source srcset="img/hero/4.webp" type="image/webp"><img src="img/hero/4.jpg" alt="Image"></picture>
+										</a>
+										<a href="img/hero/1.png" class="gallery-img">
+											<div class="arrow-hover__arrow">
+												<div class="arrow-hover__arrow-blur"></div>
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+													<path fill="white" d="M486 192.012c-90.46 6.911-170.129 47.324-226.271 114.777-67.434 81.022-90.562 194.483-60.571 297.142 35.398 121.164 138.377 209.571 267.12 229.321 21.129 3.242 72.7 3.212 93.161-.054 74.916-11.957 138.619-44.721 188.796-97.103 150.267-156.872 106.911-413.729-86.18-510.567-52.702-26.432-114.583-38.212-176.055-33.516m1.5 11.625c-1.65.186-7.725.836-13.5 1.444C306.463 222.733 184.947 370.012 198.906 538.5c14.921 180.099 180.723 309.667 361.439 282.45C695.269 800.63 801.433 695.126 822.927 560c25.18-158.295-75.488-309.753-231.267-347.951-29.933-7.34-78.7-11.278-104.16-8.412m95.53 153.333c-2.905 2.905-2.631 7.412.605 9.957 2.549 2.005 3.75 2.073 36.778 2.073h34.142l-58.277 58.276c-62.529 62.526-60.7 60.375-56.205 66.089 4.962 6.309 2.805 8.109 66.608-55.58L665 379.571v67.284l2.635 2.072c3.148 2.477 5.161 2.605 8.142.516l2.223-1.556v-86.775l-2.413-2.806-2.412-2.806-44.058-.28c-43.133-.274-44.099-.238-46.087 1.75M486.5 538.977c-1.1.467-28.663 27.568-61.25 60.222L366 658.572v-37.286c0-35.953-.072-37.358-2-39.286-2.398-2.398-5.746-2.567-8.777-.443L353 583.113v90.041l2.923 2.923 2.923 2.923h45.006c49.784 0 48.148.217 48.148-6.38 0-7.4 1.36-7.158-38.17-6.798l-35.33.321 58.75-58.841c64.361-64.461 62.488-62.217 56.115-67.229-2.853-2.244-3.806-2.396-6.865-1.096" fill-rule="evenodd" />
+												</svg>
+											</div>
+											<picture><source srcset="img/hero/1.webp" type="image/webp"><img src="img/hero/1.png" alt="Image"></picture>
+										</a>
+										<a href="img/hero/2.png" class="gallery-img">
+											<div class="arrow-hover__arrow">
+												<div class="arrow-hover__arrow-blur"></div>
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+													<path fill="white" d="M486 192.012c-90.46 6.911-170.129 47.324-226.271 114.777-67.434 81.022-90.562 194.483-60.571 297.142 35.398 121.164 138.377 209.571 267.12 229.321 21.129 3.242 72.7 3.212 93.161-.054 74.916-11.957 138.619-44.721 188.796-97.103 150.267-156.872 106.911-413.729-86.18-510.567-52.702-26.432-114.583-38.212-176.055-33.516m1.5 11.625c-1.65.186-7.725.836-13.5 1.444C306.463 222.733 184.947 370.012 198.906 538.5c14.921 180.099 180.723 309.667 361.439 282.45C695.269 800.63 801.433 695.126 822.927 560c25.18-158.295-75.488-309.753-231.267-347.951-29.933-7.34-78.7-11.278-104.16-8.412m95.53 153.333c-2.905 2.905-2.631 7.412.605 9.957 2.549 2.005 3.75 2.073 36.778 2.073h34.142l-58.277 58.276c-62.529 62.526-60.7 60.375-56.205 66.089 4.962 6.309 2.805 8.109 66.608-55.58L665 379.571v67.284l2.635 2.072c3.148 2.477 5.161 2.605 8.142.516l2.223-1.556v-86.775l-2.413-2.806-2.412-2.806-44.058-.28c-43.133-.274-44.099-.238-46.087 1.75M486.5 538.977c-1.1.467-28.663 27.568-61.25 60.222L366 658.572v-37.286c0-35.953-.072-37.358-2-39.286-2.398-2.398-5.746-2.567-8.777-.443L353 583.113v90.041l2.923 2.923 2.923 2.923h45.006c49.784 0 48.148.217 48.148-6.38 0-7.4 1.36-7.158-38.17-6.798l-35.33.321 58.75-58.841c64.361-64.461 62.488-62.217 56.115-67.229-2.853-2.244-3.806-2.396-6.865-1.096" fill-rule="evenodd" />
+												</svg>
+											</div>
+											<picture><source srcset="img/hero/2.webp" type="image/webp"><img src="img/hero/2.png" alt="Image"></picture>
+										</a>
+										<a href="img/hero/3.png" class="gallery-img">
+											<div class="arrow-hover__arrow">
+												<div class="arrow-hover__arrow-blur"></div>
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+													<path fill="white" d="M486 192.012c-90.46 6.911-170.129 47.324-226.271 114.777-67.434 81.022-90.562 194.483-60.571 297.142 35.398 121.164 138.377 209.571 267.12 229.321 21.129 3.242 72.7 3.212 93.161-.054 74.916-11.957 138.619-44.721 188.796-97.103 150.267-156.872 106.911-413.729-86.18-510.567-52.702-26.432-114.583-38.212-176.055-33.516m1.5 11.625c-1.65.186-7.725.836-13.5 1.444C306.463 222.733 184.947 370.012 198.906 538.5c14.921 180.099 180.723 309.667 361.439 282.45C695.269 800.63 801.433 695.126 822.927 560c25.18-158.295-75.488-309.753-231.267-347.951-29.933-7.34-78.7-11.278-104.16-8.412m95.53 153.333c-2.905 2.905-2.631 7.412.605 9.957 2.549 2.005 3.75 2.073 36.778 2.073h34.142l-58.277 58.276c-62.529 62.526-60.7 60.375-56.205 66.089 4.962 6.309 2.805 8.109 66.608-55.58L665 379.571v67.284l2.635 2.072c3.148 2.477 5.161 2.605 8.142.516l2.223-1.556v-86.775l-2.413-2.806-2.412-2.806-44.058-.28c-43.133-.274-44.099-.238-46.087 1.75M486.5 538.977c-1.1.467-28.663 27.568-61.25 60.222L366 658.572v-37.286c0-35.953-.072-37.358-2-39.286-2.398-2.398-5.746-2.567-8.777-.443L353 583.113v90.041l2.923 2.923 2.923 2.923h45.006c49.784 0 48.148.217 48.148-6.38 0-7.4 1.36-7.158-38.17-6.798l-35.33.321 58.75-58.841c64.361-64.461 62.488-62.217 56.115-67.229-2.853-2.244-3.806-2.396-6.865-1.096" fill-rule="evenodd" />
+												</svg>
+											</div>
+											<picture><source srcset="img/hero/3.webp" type="image/webp"><img src="img/hero/3.png" alt="Image"></picture>
+										</a>
+										<a href="img/hero/4.jpg" class="gallery-img">
+											<div class="arrow-hover__arrow">
+												<div class="arrow-hover__arrow-blur"></div>
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+													<path fill="white" d="M486 192.012c-90.46 6.911-170.129 47.324-226.271 114.777-67.434 81.022-90.562 194.483-60.571 297.142 35.398 121.164 138.377 209.571 267.12 229.321 21.129 3.242 72.7 3.212 93.161-.054 74.916-11.957 138.619-44.721 188.796-97.103 150.267-156.872 106.911-413.729-86.18-510.567-52.702-26.432-114.583-38.212-176.055-33.516m1.5 11.625c-1.65.186-7.725.836-13.5 1.444C306.463 222.733 184.947 370.012 198.906 538.5c14.921 180.099 180.723 309.667 361.439 282.45C695.269 800.63 801.433 695.126 822.927 560c25.18-158.295-75.488-309.753-231.267-347.951-29.933-7.34-78.7-11.278-104.16-8.412m95.53 153.333c-2.905 2.905-2.631 7.412.605 9.957 2.549 2.005 3.75 2.073 36.778 2.073h34.142l-58.277 58.276c-62.529 62.526-60.7 60.375-56.205 66.089 4.962 6.309 2.805 8.109 66.608-55.58L665 379.571v67.284l2.635 2.072c3.148 2.477 5.161 2.605 8.142.516l2.223-1.556v-86.775l-2.413-2.806-2.412-2.806-44.058-.28c-43.133-.274-44.099-.238-46.087 1.75M486.5 538.977c-1.1.467-28.663 27.568-61.25 60.222L366 658.572v-37.286c0-35.953-.072-37.358-2-39.286-2.398-2.398-5.746-2.567-8.777-.443L353 583.113v90.041l2.923 2.923 2.923 2.923h45.006c49.784 0 48.148.217 48.148-6.38 0-7.4 1.36-7.158-38.17-6.798l-35.33.321 58.75-58.841c64.361-64.461 62.488-62.217 56.115-67.229-2.853-2.244-3.806-2.396-6.865-1.096" fill-rule="evenodd" />
+												</svg>
+											</div>
+											<picture><source srcset="img/hero/4.webp" type="image/webp"><img src="img/hero/4.jpg" alt="Image"></picture>
+										</a>
+									</div>
 								</div>
 								<button data-showmore-button class="purple-btn link-alike mt-5 md:py-4 px-6 md:px-[90px]" type="button">
 									<span>Показать еще</span>
@@ -739,7 +809,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20250614175517"></script>
+	<script src="js/app.min.js?_v=20250621151721"></script>
 </body>
 
 </html>
